@@ -1,0 +1,17 @@
+FROM node:14.2
+
+WORKDIR /app
+
+# RUN ["sudo", "apt-get", "install", "build-essential"]
+
+COPY package.json .
+COPY yarn.lock .
+COPY .yarn-cache .
+RUN ["yarn", "config", "set", "cache-folder", "/app/.yarn-cache"]
+
+RUN ["yarn", "upgrade"]
+RUN ["yarn", "install"]
+
+COPY . .
+
+CMD ["yarn", "serve"]
