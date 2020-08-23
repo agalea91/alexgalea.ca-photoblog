@@ -23,8 +23,8 @@ $axios.interceptors.response.use(function (response) {
 
 export default {
 
-  fetchResource () {
-    return $axios.get(`resource/xxx`)
+  fetchPosts () {
+    return $axios.get(`posts`)
       .then(response => response.data)
   },
 

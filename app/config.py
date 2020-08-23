@@ -17,9 +17,15 @@ class Config(object):
     APP_DIR = os.path.dirname(__file__)
     ROOT_DIR = os.path.dirname(APP_DIR)
     DIST_DIR = os.path.join(ROOT_DIR, 'dist')
+    PUB_DIR = os.path.join(ROOT_DIR, 'public')
 
     if not os.path.exists(DIST_DIR):
         raise Exception(
             'DIST_DIR not found: {}'.format(DIST_DIR))
+
+    if not os.path.exists(PUB_DIR):
+        raise Exception(
+            'PUB_DIR not found: {}'.format(DIST_DIR))
+
 
 app.config.from_object('app.config.Config')

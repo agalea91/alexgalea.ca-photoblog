@@ -1,4 +1,5 @@
 version: "3.0"
+
 services: 
   client:
     build:
@@ -12,7 +13,7 @@ services:
       - ./src:/app/src
       - ./dist:/app/dist
       - ./.yarn-cache:/app/.yarn-cache
-    # command: ["./app/run_client.sh"]
+
   server:
     build:
       context: .
@@ -24,4 +25,8 @@ services:
       - ./public:/app/public
       - ./src:/app/src
       - ./dist:/app/dist
-    # command: ["./app/run_server.py"]
+
+    # TODO: remove this when not testing
+    environment: 
+      - FLASK_ENV=development
+
