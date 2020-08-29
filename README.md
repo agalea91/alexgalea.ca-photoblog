@@ -2,6 +2,14 @@
 
 _Flask + Vue.js Web Application_
 
+## Quickstart
+
+Build and run the server and client docker images:
+```
+make run
+```
+
+
 
 
 ## Original README

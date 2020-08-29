@@ -1,17 +1,19 @@
-FROM node:14.2
+FROM node:12.18
 
 WORKDIR /app
 
-# RUN ["sudo", "apt-get", "install", "build-essential"]
+RUN ["npm", "install", "-g", "@vue/cli@4.5.4"]
 
-COPY package.json .
-COPY yarn.lock .
-COPY .yarn-cache .
-RUN ["yarn", "config", "set", "cache-folder", "/app/.yarn-cache"]
+# RUN ["rm", "/usr/local/bin/yarn"]
+# RUN ["rm", "/usr/local/bin/yarnpkg"]
+# RUN ["npm", "install", "-g", "yarn@1.22.4"]
 
-RUN ["yarn", "upgrade"]
-RUN ["yarn", "install"]
+# COPY .yarn-cache .
+# RUN ["yarn", "config", "set", "cache-folder", "/app/.yarn-cache"]
 
+# COPY package.json .
+# COPY yarn.lock .
+# COPY src .
 COPY . .
-
+RUN ["yarn", "install"]
 CMD ["yarn", "serve"]
