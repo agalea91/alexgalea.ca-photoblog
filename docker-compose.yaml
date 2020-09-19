@@ -30,3 +30,11 @@ services:
     environment: 
       - FLASK_ENV=development
 
+  build_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client.build
+    volumes:
+      - ./dist:/app/dist
+
+

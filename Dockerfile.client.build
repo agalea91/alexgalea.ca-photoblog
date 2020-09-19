@@ -1,0 +1,27 @@
+# NOT WORKING
+
+
+
+FROM node:12.18
+
+WORKDIR /app
+
+RUN ["npm", "install", "-g", "@vue/cli@4.5.4"]
+
+# RUN ["rm", "/usr/local/bin/yarn"]
+# RUN ["rm", "/usr/local/bin/yarnpkg"]
+# RUN ["npm", "install", "-g", "yarn@1.22.4"]
+
+# COPY .yarn-cache .
+# RUN ["yarn", "config", "set", "cache-folder", "/app/.yarn-cache"]
+
+# COPY package.json .
+# COPY yarn.lock .
+# COPY src .
+COPY . .
+RUN ["yarn", "install"]
+
+RUN ["npm", "cache", "verify"]
+
+CMD ["yarn", "build"]
+

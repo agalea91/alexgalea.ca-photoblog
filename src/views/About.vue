@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Backend Resources Demo</h1>
+    <h1>Alex Galea's Photoblog | About</h1>
     <p>Click on the links below to fetch data from the Flask server</p>
     <a href="" @click.prevent="fetchPosts">Fetch Posts</a><br/>
     <a href="" @click.prevent="fetchSecureResource">Fetch Secure Resource</a>

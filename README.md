@@ -2,7 +2,18 @@
 
 _Flask + Vue.js Web Application_
 
-## Quickstart
+## Building
+
+Install dependencies from the Dockerfile, then run
+
+```
+yarn build
+cd dist
+python -m http.server
+```
+
+
+## Docker Quickstart
 
 Build and run the server and client docker images:
 ```

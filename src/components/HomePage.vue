@@ -1,16 +1,15 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <div style="padding-bottom:100px;"></div>
+    <h1>Alex Galea's Photoblog</h1>
     <p>
-      <a href="">Welcome</a> to my photoblog<br>
+      Welcome to my photo gallery<br>
       I am glad that you've come.
     </p>
-    <h3>Posts</h3>
     <ul>
-      <li v-for="item in items" :key="item.message">
-        {{ item.message }}
+      <li v-for="item in resources" :key="item.posts">
+        Post: {{ item.posts }}
       </li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
   </div>
 </template>
@@ -19,8 +18,8 @@
 export default {
   name: 'HomePage',
   props: {
-    msg: String
-  },
+    resources: Array
+  }
 }
 </script>
 

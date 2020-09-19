@@ -1,20 +1,42 @@
 <template>
   <div class="home">
-    <HomePage testing="false"/>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + Flask App"/> -->
+    <HomePage testing="false" v-bind:resources="resources"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import HomePage from '@/components/HomePage.vue'
+import $backend from '../backend'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
     HomePage
+  },
+  data () {
+    return {
+      resources: [],
+      error: ''
+    }
+  },
+  methods: {
+    fetchPosts () {
+      $backend.fetchPosts()
+        .then(responseData => {
+          this.resources.push(responseData)
+        }).catch(error => {
+          this.error = error.message
+        })
+    },
+    fetchSecureResource () {
+      $backend.fetchSecureResource()
+        .then(responseData => {
+          this.resources.push(responseData)
+        }).catch(error => {
+          this.error = error.message
+        })
+    }
   }
 }
 </script>
