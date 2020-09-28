@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <HomePage testing="false" v-bind:resources="resources"/>
+    <HomePage
+      testing="false"
+      v-bind:posts="posts"
+    />
   </div>
 </template>
 
@@ -16,7 +19,7 @@ export default {
   },
   data () {
     return {
-      resources: [],
+      posts: [],
       error: ''
     }
   },
@@ -24,19 +27,25 @@ export default {
     fetchPosts () {
       $backend.fetchPosts()
         .then(responseData => {
-          this.resources.push(responseData)
+          responseData.posts.forEach(post => {
+            this.posts.push(post)
+          })
         }).catch(error => {
           this.error = error.message
-        })
-    },
-    fetchSecureResource () {
-      $backend.fetchSecureResource()
-        .then(responseData => {
-          this.resources.push(responseData)
-        }).catch(error => {
-          this.error = error.message
+          console.log(error)
         })
     }
+    // fetchSecureResource () {
+    //   $backend.fetchSecureResource()
+    //     .then(responseData => {
+    //       this.resources.push(responseData)
+    //     }).catch(error => {
+    //       this.error = error.message
+    //     })
+    // }
+  },
+  mounted () {
+    this.fetchPosts()
   }
 }
 </script>

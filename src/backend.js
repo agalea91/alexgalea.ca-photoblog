@@ -3,7 +3,7 @@ import axios from 'axios'
 let $axios = axios.create({
   baseURL: '/api/',
   timeout: 5000,
-  headers: {'Content-Type': 'application/json'}
+  headers: { 'Content-Type': 'application/json' }
 })
 
 // Request Interceptor
@@ -25,11 +25,14 @@ export default {
 
   fetchPosts () {
     return $axios.get(`posts`)
-      .then(response => response.data)
-  },
-
-  fetchSecureResource () {
-    return $axios.get(`secure-resource/zzz`)
-      .then(response => response.data)
+      .then(response => {
+        console.log(response)
+        return response.data
+      })
   }
+
+  // fetchSecureResource () {
+  //   return $axios.get(`secure-resource/zzz`)
+  //     .then(response => response.data)
+  // }
 }
