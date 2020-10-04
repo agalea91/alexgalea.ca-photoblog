@@ -112,7 +112,8 @@ class Posts(Resource):
         slug = os.path.join(
             *post_file.split(os.path.sep)[4:-1]
         )
-        return os.path.join(current_app.config["HOST"], slug)
+        # return os.path.join(current_app.config["HOST"], slug)
+        return f"/album/{slug}"
 
 
 # @api_rest.route('/secure-resource/<string:resource_id>')

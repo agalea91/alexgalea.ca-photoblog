@@ -12,13 +12,13 @@
           <h3>
             <b>{{ post.title }}</b>. <i>{{ post.date }}</i>
           </h3>
-          <a :href="post.url_path">
+          <router-link :to="post.url_path">
             <img
               :src="post.cover_image"
               alt="Cover image"
               class="post-cover-image"
             >
-          </a>
+          </router-link>
         </div>
       </li>
     </ul>
