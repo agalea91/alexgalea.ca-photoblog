@@ -2,7 +2,7 @@
   <div class="home">
     <PhotoblogPost
       testing="false"
-      v-bind:post="post"
+      v-bind:postContent="postContent"
     />
   </div>
 </template>
@@ -19,27 +19,38 @@ export default {
   },
   data () {
     return {
-      post: {},
+      postContent: {
+        'body': { 'divs': [] }
+      },
       error: ''
     }
   },
   methods: {
-    fetchPostData () {
-      $backend.fetchPostData()
+    fetchPosts (args) {
+      console.log('Fetching posts from vue frontend')
+      $backend.fetchPosts(args)
         .then(responseData => {
-          this.posts = responseData
+          try {
+            this.postContent = responseData.posts[0]
+          } catch (err) {
+            console.log(err)
+          }
         }).catch(error => {
           this.error = error.message
           console.log(error)
         })
-    },
-    mounted () {
-      this.fetchPostData()
     }
+  },
+  mounted () {
+    this.fetchPosts({
+      year: this.$route.params.year,
+      month: this.$route.params.month,
+      foldername: this.$route.params.post_name,
+      include_post_content: 'true'
+    })
   }
 }
 </script>
 
 <style lang="scss">
-
 </style>

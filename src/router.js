@@ -13,6 +13,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/filter/:year',
+      name: 'home',
+      component: Home
+    },
+    {
       path: '/album/:year/:month/:post_name',
       name: 'post',
       component: PhotoblogPost

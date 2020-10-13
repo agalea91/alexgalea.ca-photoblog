@@ -23,14 +23,16 @@ $axios.interceptors.response.use(function (response) {
 
 export default {
 
-  fetchPosts () {
-    return $axios.get(`posts`)
+  fetchPosts (args) {
+    var _args = Object.assign({}, args)
+    console.log('Calling fetchPosts with args:')
+    console.log(_args)
+    return $axios.get(`posts`, { params: _args })
       .then(response => {
         console.log(response)
         return response.data
       })
   }
-
   // fetchSecureResource () {
   //   return $axios.get(`secure-resource/zzz`)
   //     .then(response => response.data)

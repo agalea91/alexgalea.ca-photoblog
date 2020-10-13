@@ -1,24 +1,34 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About></router-link>
-    </div> -->
+      <router-link to="/filter/2020">2020</router-link> |
+      <!-- <router-link to="/about">About></router-link> -->
+    </div>
     <router-view/>
-
-    <!-- FORK Me -->
-    <a href="https://github.com/agalea91/alexgalea.ca-photoblog"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
   </div>
 </template>
 
 <style lang="scss">
+// @import url('https://fonts.googleapis.com/css?family=Sree+Krushnadevaraya');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display&display=swap");
 #app {
+  // font-family: Sree Krushnadevaraya,serif;
+  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  // font-family: 'Playfair Display', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  // Use the rem metric elsewhere, scale up or down with this value
+  font-size: 20px;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 #nav {
   padding: 30px;
@@ -26,14 +36,14 @@
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #545454;
     }
   }
 }
 #plus {
   padding: 0 20px 0 20px;
   display: inline-block;
-  font-size: 50px;
+  font-size: 3rem;
   vertical-align: top;
   line-height: 100px;
 }

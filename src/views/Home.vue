@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <!-- FORK Me -->
+    <a href="https://github.com/agalea91/alexgalea.ca-photoblog"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
     <HomePage
       testing="false"
       v-bind:posts="posts"
@@ -24,12 +26,17 @@ export default {
     }
   },
   methods: {
-    fetchPosts () {
-      $backend.fetchPosts()
+    fetchPosts (args) {
+      console.log('Fetching posts from vue frontend')
+      $backend.fetchPosts(args)
         .then(responseData => {
-          responseData.posts.forEach(post => {
-            this.posts.push(post)
-          })
+          try {
+            responseData.posts.forEach(post => {
+              this.posts.push(post)
+            })
+          } catch (err) {
+            console.log(err)
+          }
         }).catch(error => {
           this.error = error.message
           console.log(error)
@@ -45,11 +52,19 @@ export default {
     // }
   },
   mounted () {
-    this.fetchPosts()
+    this.fetchPosts({
+      include_post_content: 'false',
+      year: this.$route.params.year
+    })
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.fetchPosts({
+      include_post_content: 'false',
+      year: next.$route.params.year
+    })
   }
 }
 </script>
 
 <style lang="scss">
-
 </style>
