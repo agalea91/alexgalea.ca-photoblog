@@ -9,6 +9,7 @@
     "postinstall": "yarn build"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^0.18.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
