@@ -6,7 +6,6 @@
       <!-- <router-link to="/about">About></router-link> -->
     </div>
     <router-view/>
-
   </div>
 </template>
 
@@ -24,7 +23,7 @@
   color: #2c3e50;
 
   // Use the rem metric elsewhere, scale up or down with this value
-  font-size: 30px;
+  font-size: 20px;
 }
 body { margin: 0; }
 h1 {

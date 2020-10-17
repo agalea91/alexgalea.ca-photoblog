@@ -11,8 +11,7 @@
 // @ is an alias to /src
 import PhotoblogPost from '@/components/PhotoblogPost.vue'
 import $backend from '../backend'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+// import AOS from 'aos'
 
 export default {
   name: 'home',
@@ -45,9 +44,9 @@ export default {
         })
     }
   },
-  created () {
-    AOS.init()
-  },
+  // updated() {
+  //   AOS.refreshHard()
+  // },
   mounted () {
     this.fetchPosts({
       year: this.$route.params.year,

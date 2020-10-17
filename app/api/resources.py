@@ -10,6 +10,7 @@ from glob import glob
 import os
 import json
 from copy import copy
+from typing import List
 
 from .security import require_auth
 from . import api_rest
@@ -86,12 +87,10 @@ class Posts(Resource):
             (text, image paths, etc..), otherwise it's dropped.
         """
         self._parse_request_args(request.args)
-        post_files = self._get_json_config_files()
+        post_files = self._map_fs_post_files(apply_filter=True)
         posts = []
         for post_file in post_files:
-            with open(post_file, "r") as f:
-                post_json = json.load(f)
-                posts.append(self._get_respose_data(post_json, post_file))
+            posts.append(self._get_response_data(post_file, get_neighbours=True))
 
         current_app.logger.info("Posts:")
         current_app.logger.info(json.dumps(posts, indent=2))
@@ -113,14 +112,21 @@ class Posts(Resource):
             else False
         )
 
-    def _get_json_config_files(self):
+    def _map_fs_post_files(self, apply_filter) -> list:
+        if apply_filter:
+            # Filter on year / month
+            path_args = [
+                self.year or "*",
+                self.month or "*",
+                self.foldername or "*",
+            ]
+            recur = False
+            limit = self.limit
 
-        # Filter on year / month
-        path_args = [
-            self.year or "*",
-            self.month or "*",
-            self.foldername or "*",
-        ]
+        else:
+            path_args = ["**"]
+            recur = True
+            limit = None
 
         post_files_glob = (
             os.path.join(
@@ -129,26 +135,34 @@ class Posts(Resource):
                 "post.json"
             )
         )
-
         # Sort most recent first
         post_files = sorted(
-            glob(post_files_glob), reverse=True
+            glob(post_files_glob, recursive=recur),
+            reverse=True
         )
-
         # Apply limit param
-        post_files = post_files[:self.limit]
+        post_files = post_files[:limit]
 
-        current_app.logger.info(post_files_glob)
         current_app.logger.info(post_files)
         return post_files
 
-    def _get_respose_data(self, post_json, post_file) -> dict:
+
+
+    def _get_response_data(self, post_file, get_neighbours=False) -> dict:
         """ Parse post data and return dict to append to response."""
-        post = post_json.copy()
+        with open(post_file, "r") as f:
+            post = json.load(f)
 
         # Parse fields from file path / name
         post["date"] = _get_post_date(post_file)
         post["url_path"] = _get_url_path(post_file)
+
+        if get_neighbours:
+            _prev_file, _next_file = self._get_neighbour_posts(post_file)
+            post["prev_url_path"] = _get_url_path(_prev_file) if _prev_file else ""
+            post["next_url_path"] = _get_url_path(_next_file) if _next_file else ""
+            post["prev_title"] = self._get_response_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
+            post["next_title"] = self._get_response_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
 
         # Fix image paths
         path = _get_file_path(post_file)
@@ -163,6 +177,50 @@ class Posts(Resource):
             del post["body"]
         
         return post
+
+    
+    def _get_neighbour_posts(self, post_file) -> List[str]:
+        all_post_files = self._map_fs_post_files(apply_filter=False)
+        size = len(all_post_files)
+        # Check edge cases
+        if size == 1:
+            _prev = ""
+            _next = ""
+        elif size == 2:
+            if post_file == all_post_files[0]:
+                _prev = ""
+                _next = all_post_files[1]
+            else:
+                _prev = all_post_files[0]
+                _next = ""
+        else:
+            i = 0
+            for prev_file, file, next_file in zip(
+                all_post_files[:-2],
+                all_post_files[1:1],
+                all_post_files[2:],
+            ):
+                i += 1
+                # Check edge cases
+                if i == 1:
+                    if post_file == prev_file:
+                        _prev = ""
+                        _next = file
+                        break
+                elif i == size:
+                    if post_file == next_file:
+                        _prev = file
+                        _next = ""
+                        break
+                
+                # Main condition
+                if post_file == file:
+                    _prev = prev_file
+                    _next = next_file
+
+        return _prev, _next
+
+
 
 
 # @api_rest.route('/secure-resource/<string:resource_id>')

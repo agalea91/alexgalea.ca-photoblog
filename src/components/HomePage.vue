@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <h1>Alex Galea's Photoblog</h1>
     <div class="headline-below-h1">

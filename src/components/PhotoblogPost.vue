@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <div class="album-nav">
+      <div :to="postContent.prev_url_path">
+        <router-link :to="postContent.prev_url_path">
+          ← {{postContent.prev_post}}
+        </router-link>
+      </div>
+      <div :v-if="postContent.next_url_path">
+        <router-link :to="postContent.next_url_path">
+          {{postContent.next_post}} ->
+        </router-link>
+      </div>
+    </div>
     <div style="padding-bottom:100px;"></div>
     <div class="post-desc">{{postContent.desc}}<br><i>{{postContent.photos_taken_date}}</i></div>
     <h1>{{postContent.title}}</h1>
@@ -11,15 +23,18 @@
         </div>
       </div>
       <div v-if="contentBlock.type === 'photo'">
-        <img
-          :src="contentBlock.file"
-          :alt="contentBlock.caption"
-          class="full-width-photo"
-          data-aos="fade"
-          data-aos-duration="2500"
-          data-aos-easing="ease-in-sine"
-          data-aos-anchor-placement="bottom"
+        <div
+            :id="'album-photo-transition-'+index"
+            data-aos="fade"
+            data-aos-duration="2500"
+            data-aos-easing="ease-in-sine"
         >
+          <img
+            :src="contentBlock.file"
+            :alt="contentBlock.caption"
+            class="full-width-photo"
+          >
+        </div>
         <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
       </div>
 
@@ -33,9 +48,7 @@
 export default {
   name: 'PhotoblogPost',
   props: {
-    postContent: Object,
-    prevPostPath: String,
-    nextPostPath: String
+    postContent: Object
   }
 }
 </script>
@@ -51,6 +64,16 @@ h1 {
   // font-family: 'Cinzel Decorative', cursive;
   font-size: 4rem;
   margin-bottom: 0;
+}
+.album-nav {
+    padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #545454;
+    }
+  }
 }
 .photo-reel-block {
   max-width: 100%;
