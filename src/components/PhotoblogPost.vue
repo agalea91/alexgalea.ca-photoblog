@@ -1,14 +1,39 @@
 <template>
   <div id="app">
-    <div class="album-nav">
-      <div :to="postContent.prev_url_path">
-        <router-link :to="postContent.prev_url_path">
-          ← {{postContent.prev_post}}
-        </router-link>
-      </div>
-      <div :v-if="postContent.next_url_path">
-        <router-link :to="postContent.next_url_path">
-          {{postContent.next_post}} ->
+    <div class="neighbour-album-nav">
+      <!-- <p>{{postContent}}</p>
+      <p>{{postContent.prev_url_path}}</p>
+      <p>
+          postContent.prev_year={{postContent.prev_year === ''}}<br>
+          postContent.prev_month={{postContent.prev_month}}<br>
+          postContent.prev_post_name={{postContent.prev_post_name}}<br>
+      </p> -->
+
+      <!-- <div :v-if="postContent.prev_post_name !== ''" :key="postContent.prev_post_name"><p>
+        Inside prev test i-if<br>
+        {{postContent.prev_post_name !== ''}}
+      </p></div>
+      <div :v-if="postContent.next_post_name !== ''" :key="postContent.next_post_name"><p>
+        Inside next test i-if<br>
+        {{postContent.next_post_name !== ''}}
+      </p></div> -->
+      <div>
+        <router-link
+          :to="{ name: 'post', params: {
+            year: postContent.prev_year,
+            month: postContent.prev_month,
+            post_name: postContent.prev_post_name
+          }}"
+        >
+          ← {{postContent.prev_title}}
+        </router-link> | <router-link
+          :to="{ name: 'post', params: {
+            year: postContent.next_year,
+            month: postContent.next_month,
+            post_name: postContent.next_post_name
+          }}"
+        >
+         {{postContent.next_title}} →
         </router-link>
       </div>
     </div>
@@ -24,18 +49,20 @@
       </div>
       <div v-if="contentBlock.type === 'photo'">
         <div
-            :id="'album-photo-transition-'+index"
+            :id="'album-photo-'+index"
+            class="album-photo-container"
             data-aos="fade"
-            data-aos-duration="2500"
+            data-aos-duration="2000"
             data-aos-easing="ease-in-sine"
+            data-aos-once="true"
         >
           <img
             :src="contentBlock.file"
             :alt="contentBlock.caption"
             class="full-width-photo"
           >
-        </div>
         <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
+        </div>
       </div>
 
     </div>
@@ -65,8 +92,8 @@ h1 {
   font-size: 4rem;
   margin-bottom: 0;
 }
-.album-nav {
-    padding: 30px;
+.neighbour-album-nav {
+    // padding: 30px;
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -74,6 +101,9 @@ h1 {
       color: #545454;
     }
   }
+}
+.album-photo-container {
+  font-size: 15px;
 }
 .photo-reel-block {
   max-width: 100%;
@@ -96,14 +126,16 @@ h1 {
 .full-width-photo {
   width: 1440px;
   max-width: 100%;
+  font-size: 0px;
 }
 .caption-below-photo {
   width: 1439px;
   max-width: 100%;
   padding-bottom: 20px;
+  padding-left: 10px;
   font-size: 1rem;
   display: inline-block;
-  text-align: right;
+  text-align: left;
 }
 
 // Horizontal line effect

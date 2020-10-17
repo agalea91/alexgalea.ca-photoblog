@@ -14,7 +14,7 @@ export default new Router({
     },
     {
       path: '/filter/:year',
-      name: 'home',
+      name: 'home-year-fitler',
       component: Home
     },
     {

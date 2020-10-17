@@ -29,7 +29,13 @@ export default {
     }
   },
   methods: {
-    fetchPosts (args) {
+    fetchPosts () {
+      let args = {
+        year: this.$route.params.year,
+        month: this.$route.params.month,
+        foldername: this.$route.params.post_name,
+        include_post_content: 'true'
+      }
       console.log('Fetching posts from vue frontend')
       $backend.fetchPosts(args)
         .then(responseData => {
@@ -47,13 +53,13 @@ export default {
   // updated() {
   //   AOS.refreshHard()
   // },
+  watch: {
+    '$route': function (to, from) {
+      this.fetchPosts()
+    }
+  },
   mounted () {
-    this.fetchPosts({
-      year: this.$route.params.year,
-      month: this.$route.params.month,
-      foldername: this.$route.params.post_name,
-      include_post_content: 'true'
-    })
+    this.fetchPosts()
   }
 }
 </script>

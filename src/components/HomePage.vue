@@ -9,7 +9,7 @@
       </p>
     </div>
     <ul>
-      <li v-for="post in posts" :key="post.title">
+      <li v-for="post in posts" :key="post.url_path">
         <div class="post-summary">
           <h3>
             <b>{{ post.title }}</b><br>

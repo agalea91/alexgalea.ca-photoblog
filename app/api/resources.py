@@ -21,6 +21,13 @@ from . import api_rest
 #     method_decorators = [require_auth]
 
 
+
+
+
+# EXAMPLE DATA for `post_file` variable used below:
+#
+# -> '/app/public/img/2020/10/1-spanish-banks/post.json'
+
 def _get_file_path(post_file) -> str:
     """ Parse proper file path """
     path = post_file.split(os.path.sep)[4:-1]
@@ -32,18 +39,33 @@ def _get_file_path(post_file) -> str:
     return path
 
 def _get_post_date(post_file) -> str:
-    """ Get the date from the post folder path."""
+    """ Get the date from the post folder path, e.g. 2020-03"""
     # TODO Should swap over the Pathlib next time I change this.
     date = "-".join(post_file.split(os.path.sep)[4:-2])
     return date
 
+def _get_post_year(post_file) -> str:
+    """ Get the dates year e.g. 03 """
+    year = _get_post_date(post_file).split("-")[0]
+    return year
+
+def _get_post_month(post_file) -> str:
+    """ Get the dates month e.g. 03 """
+    current_app.logger.warning(post_file)
+    current_app.logger.warning(_get_post_date(post_file))
+    month = _get_post_date(post_file).split("-")[1]
+    return month
+
+def _get_post_name(post_file) -> str:
+    """ Get post name, e.g. 1-panorama-ridge """
+    name = post_file.split(os.path.sep)[-2]
+    return name
+
 def _get_url_path(post_file) -> str:
     """ Set the URL path of the post based on the path. """
-    # TODO Should swap over the Pathlib next time I change this.
     slug = os.path.join(
         *post_file.split(os.path.sep)[4:-1]
     )
-    # return os.path.join(current_app.config["HOST"], slug)
     return f"/album/{slug}"
 
 
@@ -155,14 +177,28 @@ class Posts(Resource):
 
         # Parse fields from file path / name
         post["date"] = _get_post_date(post_file)
+        post["year"] = _get_post_year(post_file)
+        post["month"] = _get_post_month(post_file)
+        post["post_name"] = _get_post_name(post_file)
         post["url_path"] = _get_url_path(post_file)
 
         if get_neighbours:
             _prev_file, _next_file = self._get_neighbour_posts(post_file)
-            post["prev_url_path"] = _get_url_path(_prev_file) if _prev_file else ""
-            post["next_url_path"] = _get_url_path(_next_file) if _next_file else ""
+            # post["prev_date"] = _get_post_date(_prev_file)
+            # post["next_date"] = _get_post_date(_next_file)
+
             post["prev_title"] = self._get_response_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
+            post["prev_url_path"] = _get_url_path(_prev_file) if _prev_file else ""
+            post["prev_year"] = _get_post_year(_prev_file) if _prev_file else ""
+            post["prev_month"] = _get_post_month(_prev_file) if _prev_file else ""
+            post["prev_post_name"] = _get_post_name(_prev_file) if _prev_file else ""
+
+            post["next_url_path"] = _get_url_path(_next_file) if _next_file else ""
             post["next_title"] = self._get_response_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
+            post["next_year"] = _get_post_year(_next_file) if _next_file else ""
+            post["next_month"] = _get_post_month(_next_file) if _next_file else ""
+            post["next_post_name"] = _get_post_name(_next_file) if _next_file else ""
+
 
         # Fix image paths
         path = _get_file_path(post_file)
@@ -180,7 +216,7 @@ class Posts(Resource):
 
     
     def _get_neighbour_posts(self, post_file) -> List[str]:
-        all_post_files = self._map_fs_post_files(apply_filter=False)
+        all_post_files = self._map_fs_post_files(apply_filter=False)[::-1]
         size = len(all_post_files)
         # Check edge cases
         if size == 1:
