@@ -23,13 +23,11 @@ export default {
       postContent: {
         'body': { 'divs': [] }
       },
-      prevPostPath: '',
-      nextPostPath: '',
       error: ''
     }
   },
   methods: {
-    fetchPosts () {
+    fetchPosts: function () {
       let args = {
         year: this.$route.params.year,
         month: this.$route.params.month,
@@ -49,6 +47,24 @@ export default {
           console.log(error)
         })
     }
+    // imageObjectSchema: function (postContent) {
+    //   let script = []
+    //   for (const contentBlock in postContent.body.divs) {
+    //     if (postContent.type === 'photo') {
+    //       script.push({
+    //         '@context': 'https://schema.org/',
+    //         '@type': 'ImageObject',
+    //         'contentUrl': 'https://' + location.host + contentBlock.file,
+    //         'license': 'https://creativecommons.org/licenses/by-nc/4.0/',
+    //         'acquireLicensePage': 'https://' + location.host + '/about'
+    //       })
+    //     }
+    //   }
+    //   return JSON.stringify(script)
+    // },
+    // test: function (postContent) {
+    //   return 'console.log(\'im working\');'
+    // }
   },
   // updated() {
   //   AOS.refreshHard()

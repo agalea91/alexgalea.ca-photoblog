@@ -57,13 +57,13 @@ export default {
       include_post_content: 'false',
       year: this.$route.params.year
     })
-  },
-  beforeRouteUpdate (to, from, next) {
-    this.fetchPosts({
-      include_post_content: 'false',
-      year: next.$route.params.year
-    })
   }
+  // beforeRouteUpdate (to, from, next) {
+  //   this.fetchPosts({
+  //     include_post_content: 'false',
+  //     year: next.$route.params.year
+  //   })
+  // }
 }
 </script>
 

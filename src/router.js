@@ -13,8 +13,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/filter/:year',
-      name: 'home-year-fitler',
+      path: '/collection/:year',
+      name: 'collection',
       component: Home
     },
     {

@@ -5,14 +5,16 @@ import store from './store'
 
 import './filters'
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+// import AOS from 'aos'
+// import 'aos/dist/aos.css'
 
 Vue.config.productionTip = false
 
 new Vue({
   created () {
-    AOS.init()
+    // AOS.init({
+    //   disable: 'mobile'
+    // })
   },
   router,
   store,

@@ -218,17 +218,15 @@ class Posts(Resource):
     def _get_neighbour_posts(self, post_file) -> List[str]:
         all_post_files = self._map_fs_post_files(apply_filter=False)[::-1]
         size = len(all_post_files)
+        _prev, _next = "", ""
         # Check edge cases
         if size == 1:
-            _prev = ""
-            _next = ""
+            pass
         elif size == 2:
             if post_file == all_post_files[0]:
-                _prev = ""
-                _next = all_post_files[1]
-            else:
-                _prev = all_post_files[0]
-                _next = ""
+                _prev, _next = "", all_post_files[1]
+            elif post_file == all_post_files[1]:
+                _prev, _next = all_post_files[0], ""
         else:
             i = 0
             for prev_file, file, next_file in zip(

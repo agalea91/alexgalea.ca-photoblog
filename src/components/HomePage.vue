@@ -11,11 +11,17 @@
     <ul>
       <li v-for="post in posts" :key="post.url_path">
         <div class="post-summary">
-          <h3>
-            <b>{{ post.title }}</b><br>
-            {{ post.date }}
-          </h3>
-          <router-link :to="post.url_path">
+          <div class="post-title">{{ post.title }}</div>
+          <div class="post-desc">
+            {{ post.desc }} (<i>{{ post.photos_taken_date }}</i>)
+          </div>
+          <router-link
+            :to="{ name: 'post', params: {
+              year: post.year,
+              month: post.month,
+              post_name: post.post_name
+            }}"
+          >
             <img
               :src="post.cover_image"
               alt="Cover image"
@@ -39,10 +45,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
+
+.post-title {
+  font-family: 'Playfair Display', serif;
+  margin: 40px 0 0;
+  text-align: left;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.post-desc {
   font-family: 'Playfair Display', serif;
   font-weight:normal;
-  margin: 40px 0 0;
+  margin: 5px 0 0;
   text-align: left;
   padding-left: 10px;
 }

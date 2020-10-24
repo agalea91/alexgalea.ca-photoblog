@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>
-      | <router-link to="/filter/2020">2020</router-link>
+      | <router-link to="/collection/2020">2020</router-link>
       <!-- <router-link to="/about">About></router-link> -->
     </div>
     <router-view/>
@@ -23,7 +23,16 @@
   color: #2c3e50;
 
   // Use the rem metric elsewhere, scale up or down with this value
+  // font-size: 20px;
   font-size: 20px;
+  @media only screen and (max-width: 768px) {
+    font-size: 15;
+  }
+
+  @media only screen and (max-width: 320px) {
+    font-size: 10px;
+  }
+
 }
 body { margin: 0; }
 h1 {

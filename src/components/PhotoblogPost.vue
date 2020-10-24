@@ -17,6 +17,9 @@
         Inside next test i-if<br>
         {{postContent.next_post_name !== ''}}
       </p></div> -->
+      <!-- <script type="application/ld+json" :v-html="test"></script> -->
+      <!-- <script type="application/ld+json" :v-html="test(postContent)"></script> -->
+      <!-- <div v-bind="test2">WHAT THE FUCK: {{test2}}</div> -->
       <div>
         <router-link
           :to="{ name: 'post', params: {
@@ -61,7 +64,9 @@
             :alt="contentBlock.caption"
             class="full-width-photo"
           >
-        <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
+        <div class="caption-container">
+          <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
+        </div>
         </div>
       </div>
 
@@ -75,21 +80,28 @@
 export default {
   name: 'PhotoblogPost',
   props: {
-    postContent: Object
+    postContent: Object,
+    error: String
   }
+  // methods: {
+  //   test: Function
+  // }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 html { width: 100%; }
-#app {
+// #app {
   // font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-}
+
+  // Use the rem metric elsewhere, scale up or down with this value
+  // font-size: 1.5rem;
+  // font-size: 1vw;
+// }
 h1 {
   // font-family: 'Cinzel Decorative', cursive;
-  font-size: 4rem;
+  font-size: 2rem;
   margin-bottom: 0;
 }
 .neighbour-album-nav {
@@ -111,13 +123,15 @@ h1 {
 .post-desc {
   font-family: 'Playfair Display', serif;
   padding-bottom: 50px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: inline-block;
   width: 600px;
+  max-width: 90%;
 }
 .text-block {
-  padding: 70px;
-  font-size: 1.7rem;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  font-size: 1.2rem;
   display: inline-block;
   width: 500px;
   max-width: 90%;
@@ -127,6 +141,10 @@ h1 {
   width: 1440px;
   max-width: 100%;
   font-size: 0px;
+}
+.caption-container {
+  box-sizing: border-box;
+  padding: 10px;
 }
 .caption-below-photo {
   width: 1439px;
