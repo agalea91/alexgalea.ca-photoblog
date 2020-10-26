@@ -27,9 +27,12 @@ export default {
     }
   },
   head: {
-    title: {
-      inner: "Alexander Galea's Photoblog"
-    }
+    meta: [
+      {
+        name: 'description',
+        content: "Welcome to Alexander Galea's Photoblog, featuring landscapes from the Pacific Northwest and Canada's Rocky Mountains."
+      }
+    ]
   },
   methods: {
     fetchPosts (args) {

@@ -26,6 +26,21 @@ export default {
       error: ''
     }
   },
+  head: {
+    title: function () {
+      return {
+        inner: this.postContent.title
+      }
+    },
+    meta: function () {
+      return [
+        {
+          name: 'description',
+          content: this.postContent.desc + '. High quality photos for download.'
+        }
+      ]
+    }
+  },
   methods: {
     fetchPosts: function () {
       let args = {
@@ -39,6 +54,7 @@ export default {
         .then(responseData => {
           try {
             this.postContent = responseData.posts[0]
+            this.$emit('updateHead')
           } catch (err) {
             console.log(err)
           }

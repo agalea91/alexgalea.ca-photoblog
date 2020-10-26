@@ -22,6 +22,17 @@ export default {
     return {
     }
   },
+  head: {
+    title: {
+      inner: 'About'
+    },
+    meta: [
+      {
+        name: 'description',
+        content: "About Alexander Galea's Photoblog. My album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
+      }
+    ]
+  },
   methods: {
   },
   mounted () {

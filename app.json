@@ -1,9 +1,9 @@
 
 {
-  "name": "Flask VueJs Template",
+  "name": "Alexander Galea's Photoblog",
   "description": "",
-  "repository": "https://github.com/gtalarico/flask-vuejs-template",
-  "logo": "https://github.com/gtalarico/flask-vuejs-template/raw/master/docs/project-logo.png",
+  "repository": "https://github.com/agalea91/alexgalea.ca-photoblog",
+  "logo": "https://raw.githubusercontent.com/agalea91/alexgalea.ca-photoblog/master/public/favicon.ico",
   "keywords": ["flask", "vue"],
   "env": {
     "FLASK_ENV": {
