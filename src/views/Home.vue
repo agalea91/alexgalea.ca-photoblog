@@ -26,6 +26,11 @@ export default {
       error: ''
     }
   },
+  head: {
+    title: {
+      inner: "Alexander Galea's Photoblog"
+    }
+  },
   methods: {
     fetchPosts (args) {
       console.log('Fetching posts from vue frontend')
