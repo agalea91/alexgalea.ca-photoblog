@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <router-link to="/" id="header-homepage-link">
+      <div>Alexander Galea's Photoblog</div>
+    </router-link>
     <div class="neighbour-album-nav">
       <router-link
         v-if="postContent.prev_post_name"

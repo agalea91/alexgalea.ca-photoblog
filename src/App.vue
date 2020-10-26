@@ -1,14 +1,29 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Latest</router-link>
-      | <router-link to="/collection/2020">2020</router-link>
-      | <router-link to="/about">About</router-link>
-      <!-- <router-link to="/about">About></router-link> -->
+      <div v-if="this.$route.name === 'home'">
+        <router-link to="/">Latest</router-link>
+        | <router-link to="/collection/2020">2020</router-link>
+        | <router-link to="/about">About</router-link>
+      </div>
+      <div v-if="this.$route.name === 'collection'">
+        <router-link to="/">Latest</router-link>
+        | <router-link to="/collection/2020">2020</router-link>
+        | <router-link to="/about">About</router-link>
+      </div>
+      <div v-if="this.$route.name === 'about'">
+        <router-link to="/">Home</router-link>
+      </div>
+      <div v-if="this.$route.name === 'post'">
+      </div>
     </div>
     <router-view/>
     <v-footer>
       <div id="footer">
+        <router-link to="/">Home</router-link>
+        | <router-link to="/about">About</router-link>
+        <br>
+        <br>
         © Alexander Galea {{ new Date().getFullYear() }}
       </div>
     </v-footer>
@@ -40,6 +55,19 @@
   }
 
 }
+#header-homepage-link{
+  font-family: 'Playfair Display', serif;
+  text-decoration: none;
+  color: #2c3e50;
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+
+}
 body { margin: 0; }
 h1 {
   font-family: 'Playfair Display', serif;
@@ -57,7 +85,7 @@ h1 {
 }
 #footer {
   font-size: 1rem;
-  padding-top: 10px;
+  padding-top: 100px;
   padding-bottom: 30px;
 }
 #plus {
