@@ -1,7 +1,7 @@
 <template>
 
   <div id="app">
-    <h1>Alex Galea's Photoblog</h1>
+    <h1>Alexander Galea's Photoblog</h1>
     <div class="headline-below-h1">
       <p>
         Welcome to my photo gallery<br>
@@ -52,13 +52,15 @@ export default {
   text-align: left;
   padding-left: 10px;
   font-weight: bold;
+  font-size: 1.7rem;
 }
 .post-desc {
-  font-family: 'Playfair Display', serif;
-  font-weight:normal;
-  margin: 5px 0 0;
+  // font-family: 'Playfair Display', serif;
+  margin: 10px 0 0;
   text-align: left;
   padding-left: 10px;
+  font-weight:normal;
+  font-size: 1rem;
 }
 ul {
   list-style-type: none;

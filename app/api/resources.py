@@ -51,8 +51,6 @@ def _get_post_year(post_file) -> str:
 
 def _get_post_month(post_file) -> str:
     """ Get the dates month e.g. 03 """
-    current_app.logger.warning(post_file)
-    current_app.logger.warning(_get_post_date(post_file))
     month = _get_post_date(post_file).split("-")[1]
     return month
 
@@ -165,6 +163,7 @@ class Posts(Resource):
         # Apply limit param
         post_files = post_files[:limit]
 
+        current_app.logger.info(f"Found {len(post_files)} post files:")
         current_app.logger.info(post_files)
         return post_files
 
@@ -184,6 +183,9 @@ class Posts(Resource):
 
         if get_neighbours:
             _prev_file, _next_file = self._get_neighbour_posts(post_file)
+            current_app.logger.info("Found neighbors:")
+            current_app.logger.info(_prev_file)
+            current_app.logger.info(_next_file)
             # post["prev_date"] = _get_post_date(_prev_file)
             # post["next_date"] = _get_post_date(_next_file)
 
@@ -231,7 +233,7 @@ class Posts(Resource):
             i = 0
             for prev_file, file, next_file in zip(
                 all_post_files[:-2],
-                all_post_files[1:1],
+                all_post_files[1:-1],
                 all_post_files[2:],
             ):
                 i += 1
@@ -241,8 +243,9 @@ class Posts(Resource):
                         _prev = ""
                         _next = file
                         break
-                elif i == size:
+                elif i == (size - 2):
                     if post_file == next_file:
+                        current_app.logger.info("YOU ARE HERE")
                         _prev = file
                         _next = ""
                         break

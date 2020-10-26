@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <router-link to="/">Latest</router-link>
       | <router-link to="/collection/2020">2020</router-link>
+      | <router-link to="/about">About</router-link>
       <!-- <router-link to="/about">About></router-link> -->
     </div>
     <router-view/>
+    <v-footer>
+      <div id="footer">
+        © Alexander Galea {{ new Date().getFullYear() }}
+      </div>
+    </v-footer>
   </div>
 </template>
 
 <style lang="scss">
 // @import url('https://fonts.googleapis.com/css?family=Sree+Krushnadevaraya');
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display&family=Unna&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display&family=Unna&family=Nothing+You+Could+Do&display=swap");
 // html { overflow-x: hidden }
 #app {
   // font-family: Sree Krushnadevaraya,serif;
@@ -48,6 +54,11 @@ h1 {
       color: #545454;
     }
   }
+}
+#footer {
+  font-size: 1rem;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 #plus {
   padding: 0 20px 0 20px;

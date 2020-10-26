@@ -1,49 +1,38 @@
 <template>
   <div id="app">
     <div class="neighbour-album-nav">
-      <!-- <p>{{postContent}}</p>
-      <p>{{postContent.prev_url_path}}</p>
-      <p>
-          postContent.prev_year={{postContent.prev_year === ''}}<br>
-          postContent.prev_month={{postContent.prev_month}}<br>
-          postContent.prev_post_name={{postContent.prev_post_name}}<br>
-      </p> -->
-
-      <!-- <div :v-if="postContent.prev_post_name !== ''" :key="postContent.prev_post_name"><p>
-        Inside prev test i-if<br>
-        {{postContent.prev_post_name !== ''}}
-      </p></div>
-      <div :v-if="postContent.next_post_name !== ''" :key="postContent.next_post_name"><p>
-        Inside next test i-if<br>
-        {{postContent.next_post_name !== ''}}
-      </p></div> -->
-      <!-- <script type="application/ld+json" :v-html="test"></script> -->
-      <!-- <script type="application/ld+json" :v-html="test(postContent)"></script> -->
-      <!-- <div v-bind="test2">WHAT THE FUCK: {{test2}}</div> -->
-      <div>
-        <router-link
-          :to="{ name: 'post', params: {
-            year: postContent.prev_year,
-            month: postContent.prev_month,
-            post_name: postContent.prev_post_name
-          }}"
-        >
-          ← {{postContent.prev_title}}
-        </router-link> | <router-link
-          :to="{ name: 'post', params: {
-            year: postContent.next_year,
-            month: postContent.next_month,
-            post_name: postContent.next_post_name
-          }}"
-        >
-         {{postContent.next_title}} →
-        </router-link>
-      </div>
+      <router-link
+        v-if="postContent.prev_post_name"
+        :to="{ name: 'post', params: {
+          year: postContent.prev_year,
+          month: postContent.prev_month,
+          post_name: postContent.prev_post_name
+        }}"
+        style="padding-right: 25px;"
+      >
+        ← {{postContent.prev_title}}
+      </router-link>
+      <br>
+      <router-link
+        v-if="postContent.next_post_name"
+        :to="{ name: 'post', params: {
+          year: postContent.next_year,
+          month: postContent.next_month,
+          post_name: postContent.next_post_name
+        }}"
+        style="padding-left: 25px;"
+      >
+        {{postContent.next_title}} →
+      </router-link>
     </div>
-    <div style="padding-bottom:100px;"></div>
-    <div class="post-desc">{{postContent.desc}}<br><i>{{postContent.photos_taken_date}}</i></div>
+    <div style="padding-bottom:25px;"></div>
     <h1>{{postContent.title}}</h1>
-    <div>{{this.$route.params.year}}-{{this.$route.params.month}}</div>
+    <div class="post-author">
+      Alexander Galea, <i>{{this.$route.params.year}}-{{this.$route.params.month}}</i>
+    </div>
+    <div class="post-desc">
+      {{postContent.desc}}, <i>{{postContent.photos_taken_date}}</i>
+    </div>
     <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
       <div v-if="contentBlock.type === 'text'">
         <div class="text-block">
@@ -106,6 +95,9 @@ h1 {
 }
 .neighbour-album-nav {
     // padding: 30px;
+  font-family: 'Playfair Display', serif;
+  line-height: 25px;
+  font-size: 1rem;
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -114,24 +106,31 @@ h1 {
     }
   }
 }
-.album-photo-container {
-  font-size: 15px;
-}
+// .album-photo-container {
+//   font-size: 15px;
+// }
 .photo-reel-block {
   max-width: 100%;
 }
-.post-desc {
-  font-family: 'Playfair Display', serif;
+.post-author {
+  font-size: 0.7rem;
   padding-bottom: 50px;
-  font-size: 1.2rem;
+}
+.post-desc {
+  // font-family: 'Playfair Display', serif;
+  font-family: 'Nothing You Could Do', cursive;
+  padding-bottom: 25px;
+  font-size: 2rem;
   display: inline-block;
-  width: 600px;
+  width: 400px;
   max-width: 90%;
+  height: 50px;
 }
 .text-block {
+  font-family: 'Playfair Display', serif;
   padding-top: 70px;
   padding-bottom: 70px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: inline-block;
   width: 500px;
   max-width: 90%;
