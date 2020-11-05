@@ -1,0 +1,48 @@
+{
+    "title": "Joy in life",
+    "desc": "Guinness at Spanish Banks",
+    "photos_taken_date": "April 2020",
+    "cover_image": "3-20200415-IMG_5200.jpg",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "This is the true joy in life"
+            },
+            {
+                "type": "photo",
+                "file": "1-20200415-IMG_5172-2.jpg",
+                "caption": ""
+            },
+            {
+                "type": "photo",
+                "file": "2-20200415-IMG_5177.jpg",
+                "caption": ""
+            },
+            {
+                "type": "text",
+                "text": "the being used for a purpose recognized by yourself as a mighty one"
+            },
+            {
+                "type": "photo",
+                "file": "3-20200415-IMG_5200.jpg",
+                "caption": ""
+            },
+            {
+                "type": "text",
+                "text": "the being thoroughly worn out before you are thrown on the scrap heap"
+            },
+            {
+                "type": "photo",
+                "file": "4-20200415-IMG_5205.jpg",
+                "caption": "Low lying \"clouds\" on the horizon, in fact smoke drifting in from forest fires to the South."
+            },
+            {
+                "type": "text",
+                "text": "the being a force of Nature.<br><br><i>- George Bernard Shaw</i>"
+            }
+        ]
+    }
+}
+
+
