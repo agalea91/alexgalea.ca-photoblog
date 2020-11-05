@@ -29,7 +29,7 @@ from . import api_rest
 # -> '/app/public/img/2020/10/1-spanish-banks/post.json'
 
 def _get_file_path(post_file) -> str:
-    """ Parse proper file path """
+    """ Parse proper file path and append host """
     path = post_file.split(os.path.sep)[4:-1]
     path = os.path.join(
         current_app.config["HOST"],
@@ -163,9 +163,24 @@ class Posts(Resource):
         # Apply limit param
         post_files = post_files[:limit]
 
+        # Apply others
+        post_files = self.apply_ignore_filter(post_files)
+
         current_app.logger.info(f"Found {len(post_files)} post files:")
         current_app.logger.info(post_files)
         return post_files
+
+
+    def apply_ignore_filter(self, post_files):
+        _post_files = []
+        for post in post_files:
+            for pattern in current_app.config["IMG_IGNORE"]:
+                if pattern in post:
+                    break
+            else:
+                print(post)
+                _post_files.append(post)
+        return _post_files
 
 
 

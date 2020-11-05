@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /app
-python run.py
+yarn install
+yarn serve

@@ -9,6 +9,7 @@
       <ul>
         <li>70-200mm f/4.0</li>
         <li>60mm f/2.8 macro</li>
+        <li>17-50mm f/2.8</li>
       </ul>
       <p>
         Living in Western Canada has given me the opportunity to photograph amazing scenery.

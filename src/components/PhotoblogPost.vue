@@ -5,18 +5,6 @@
     </router-link>
     <div class="neighbour-album-nav">
       <router-link
-        v-if="postContent.prev_post_name"
-        :to="{ name: 'post', params: {
-          year: postContent.prev_year,
-          month: postContent.prev_month,
-          post_name: postContent.prev_post_name
-        }}"
-        style="padding-right: 25px;"
-      >
-        ← {{postContent.prev_title}}
-      </router-link>
-      <br>
-      <router-link
         v-if="postContent.next_post_name"
         :to="{ name: 'post', params: {
           year: postContent.next_year,
@@ -27,11 +15,23 @@
       >
         {{postContent.next_title}} →
       </router-link>
+      <br>
+      <router-link
+        v-if="postContent.prev_post_name"
+        :to="{ name: 'post', params: {
+          year: postContent.prev_year,
+          month: postContent.prev_month,
+          post_name: postContent.prev_post_name
+        }}"
+        style="padding-right: 25px;"
+      >
+        ← {{postContent.prev_title}}
+      </router-link>
     </div>
     <div style="padding-bottom:25px;"></div>
     <h1>{{postContent.title}}</h1>
     <div class="post-author">
-      Alexander Galea, <i>{{this.$route.params.year}}-{{this.$route.params.month}}</i>
+      {{this.$route.params.year}}-{{this.$route.params.month}}
     </div>
     <div class="post-desc">
       {{postContent.desc}}, <i>{{postContent.photos_taken_date}}</i>
