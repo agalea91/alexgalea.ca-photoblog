@@ -87,13 +87,15 @@ for fp in post_fps:
 #         shutil.copy(image_fp, pub_image_fp)
 
 
-post_slug = "1-joy-in-life"
+# post_slug = "1-joy-in-life"
+post_slug = ""
 
 
 
 import json
 import glob
 import os
+import shutil
 import pathlib
 
 import traceback
@@ -105,7 +107,6 @@ from PIL import ImageFont
 POST_PATH = "posts/img/*/*/*"
 PUB_PATH = "public"
 MAX_PX_SIZE = 1080
-WATERMARK = "© Alexander Galea"
 
 def main():
 #     args = parse_args()
@@ -125,17 +126,29 @@ def main():
         except:
             print(f"Failed to read images in post: {fp}")
             print(traceback.print_exc())
+            image_files = []
             
+        pub_fp = PUB_PATH / (pathlib.Path(*fp.parts[1:]))
+            
+        post_fp = (fp / "post.json")
+        pub_post_fp = (pub_fp / "post.json")
+        print(f"{str(post_fp)} -> {str(pub_post_fp)}")
+        pathlib.Path(*pub_post_fp.parts[:-1]).mkdir(exist_ok=True, parents=True)
+        shutil.copyfile(post_fp, pub_post_fp)    
+
         for image in image_files:
             image_fp = (fp / image["file"])
-            pub_image_fp = PUB_PATH / (pathlib.Path(*fp.parts[1:]) / image["file"])
+            pub_image_fp = (pub_fp / image["file"])
             print(image_fp)
             
             image_obj = load_image(image_fp)
             image_obj = resize_pixels(image_obj, MAX_PX_SIZE)
-            image_obj = add_watermark(image_obj, WATERMARK, date=image["date"])
-#             write_image(image_obj, pub_image_fp)
+            image_obj = add_watermark(image_obj, date=image["date"])
             
+            print(f"{str(image_fp)} -> {str(pub_image_fp)}")
+            write_image(image_obj, pub_image_fp)
+            
+    
 
 def parse_args():
     import argparse
@@ -158,15 +171,17 @@ def load_image(image_fp):
     
 
 
-def add_watermark(image_obj, watermark_text, **kwargs):
+def add_watermark(image_obj, **kwargs):
     photo_date = kwargs["date"]
+    upper_right_text = "© Alex Galea 2020"
+    bottom_left_text = f"photos.alexgalea.ca"
     
     txt_obj = Image.new("RGBA", image_obj.size, (255,255,255,0))
     font = ImageFont.truetype("./fonts/PlayfairDisplay-Black.ttf", 40)
     draw = ImageDraw.Draw(txt_obj)
     w, h = image_obj.size
-    draw.text((w-400, 50), watermark_text, (255,255,255, 30), font=font)
-    draw.text((50, h-100), photo_date, (255,255,255, 30), font=font)
+    draw.text((w-400, 50), upper_right_text, (255,255,255, 70), font=font)
+    draw.text((50, h-100), bottom_left_text, (255,255,255, 70), font=font)
     image_obj = Image.alpha_composite(image_obj, txt_obj)
         
 #     from matplotlib.pyplot import imshow
@@ -204,6 +219,7 @@ def read_posts():
     post_folders = [pathlib.Path(folder) for folder in post_folders]
     return post_folders
 
+
 def read_post_images(post_fp):
     images = []
     with open((post_fp / "post.json"), "rb") as f:
@@ -217,6 +233,7 @@ def read_post_images(post_fp):
                 images[-1]["file"] = photo
                 images[-1]["date"] = post["photos_taken_date"]
     return images
+
 
 def write_image(image_obj, pub_image_fp):
     image_obj.convert("RGB").save(pub_image_fp)
