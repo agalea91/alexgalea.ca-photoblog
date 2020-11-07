@@ -44,7 +44,6 @@
       </div>
       <div v-if="contentBlock.type === 'photo'">
         <div
-            :id="'album-photo-'+index"
             class="album-photo-container"
             data-aos="fade"
             data-aos-duration="2000"
@@ -54,6 +53,7 @@
           <img
             :src="contentBlock.file"
             :alt="contentBlock.caption"
+            :id="'album-photo-'+index"
             class="full-width-photo"
           >
         <div class="caption-container">
@@ -109,9 +109,11 @@ h1 {
     }
   }
 }
-// .album-photo-container {
-//   font-size: 15px;
-// }
+.album-photo-container {
+  width: 1080px;
+  max-width: 100%;
+  display: inline-block;
+}
 .photo-reel-block {
   max-width: 100%;
 }
@@ -140,7 +142,6 @@ h1 {
   text-align: center;
 }
 .full-width-photo {
-  width: 1440px;
   max-width: 100%;
   font-size: 0px;
 }
