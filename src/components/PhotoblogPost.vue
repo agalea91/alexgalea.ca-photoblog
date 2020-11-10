@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-link to="/" id="header-homepage-link">
-      <div>Alexander Galea's Photoblog</div>
+      <div>The Mindful Photoblog</div>
     </router-link>
     <div class="neighbour-album-nav">
       <router-link

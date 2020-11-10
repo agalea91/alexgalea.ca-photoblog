@@ -1,8 +1,8 @@
 {
     "title": "The story of S7ayulh (Thunder)",
-    "desc": "Hike to the peak of Goat Mountain and on down Goat Mountain Ridge",
+    "desc": "Rainy day views from Goat Mountain",
     "photos_taken_date": "August 2020",
-    "cover_image": "",
+    "cover_image": "5-20200830-IMG_6767.jpg",
     "body": {
         "divs": [
             {
@@ -10,29 +10,45 @@
                 "text": "Long ago there were four brothers who went hunting mountain goat."
             },
             {
+                "type": "photo",
+                "file": "1-20200830-IMG_6779.jpg"
+            },
+            {
                 "type": "text",
                 "text": "As it began to rain they set up their camp on the ledge of a cliff and went to sleep."
+            },
+            {
+                "type": "photo",
+                "file": "2-20200830-IMG_6760.jpg"
             },
             {
                 "type": "text",
                 "text": "Woken by the flash of lightening and the sound of thunder, they saw supernatural beings dancing from mountain top to mountain top on rainbows, smashing quartz crystals in their hands."
             },
             {
+                "type": "photo",
+                "file": "3-20200830-IMG_6761.jpg"
+            },
+            {
                 "type": "text",
                 "text": "The three younger brothers wanted to steal the crystals for their own use, but were killed by the heat when they got too close."
+            },
+            {
+                "type": "photo",
+                "file": "4-20200830-IMG_6781.jpg"
             },
             {
                 "type": "text",
                 "text": "The eldest brother cut a hole in his blanket and watched these supernatural beings dance."
             },
             {
-                "type": "text",
-                "text": "The next day he returned to his village, carved a mask, and taught the people the dance of Thunder.<br><br><i>- Clyde Tallio</i>"
+                "type": "photo",
+                "file": "5-20200830-IMG_6767.jpg",
+                "caption": "Cathedral mountain in the clouds, looking NE from the Peak of Goat Mountain."
             },
             {
-                "type": "photo",
-                "file": "",
-                "caption": ""
+                "type": "text",
+                "text": "The next day he returned to his village, carved a mask, and taught the people the dance of Thunder.<br><br><i>- Clyde Tallio</i>"
             }
         ]
     }

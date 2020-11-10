@@ -14,7 +14,8 @@ from PIL import ImageFont
 
 POST_PATH = "posts/img/*/*/*"
 PUB_PATH = "public"
-MAX_PX_SIZE = 1080
+WATERMARK_FONT_SIZE = 25
+MAX_PX_SIZE = 1280
 
 def main():
     args = parse_args()
@@ -81,11 +82,11 @@ def load_image(image_fp):
 
 def add_watermark(image_obj, **kwargs):
     photo_date = kwargs["date"]
-    upper_right_text = "© Alex Galea 2020"
-    bottom_left_text = f"photos.alexgalea.ca"
+    upper_right_text = f"© Alex Galea {photo_date[:4]}"
+    bottom_left_text = "photos.alexgalea.ca"
     
     txt_obj = Image.new("RGBA", image_obj.size, (255,255,255,0))
-    font = ImageFont.truetype("./fonts/PlayfairDisplay-Black.ttf", 40)
+    font = ImageFont.truetype("./fonts/PlayfairDisplay-Black.ttf", WATERMARK_FONT_SIZE)
     draw = ImageDraw.Draw(txt_obj)
     w, h = image_obj.size
     draw.text((w-400, 50), upper_right_text, (255,255,255, 70), font=font)

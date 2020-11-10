@@ -27,7 +27,6 @@ class Config:
 
     IMG_IGNORE = [
         "2020/09/1-thunderbird",
-        "2020/10/2-the-story-of-s7ayulh-thunder",
         "2020/10/3-earthquake-foot",
     ]
 
