@@ -1,7 +1,21 @@
 {
     "title": "The story of S7ayulh (Thunder)",
-    "desc": "Rainy day views from Goat Mountain",
-    "photos_taken_date": "August 2020",
+    "quote": {
+        "source": {
+            "url": "https://www.ourworldlanguage.ca/blog/2007/1/30/story-of-the-thunder",
+            "title": "Story of the Thunder",
+            "author": "Clyde M. Tallio",
+            "year": "2007"
+        },
+        "tags": ["First Nations", "Legends"]
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "Rainy day views from Goat Mountain",
+        "date_taken": "August 2020",
+        "location": "North Vancouver",
+        "tags": ["Hike", "Cloudy", "Mountains"]
+    },
     "cover_image": "5-20200830-IMG_6767.jpg",
     "body": {
         "divs": [

@@ -1,7 +1,21 @@
 {
     "title": "Joy in life",
-    "desc": "Guinness at Spanish Banks",
-    "photos_taken_date": "April 2020",
+    "quote": {
+        "source": {
+            "url": "",
+            "title": "",
+            "author": "",
+            "year": ""
+        },
+        "tags": []
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "",
+        "date_taken": "",
+        "location": "",
+        "tags": []
+    },
     "cover_image": "3-20200415-IMG_5200.jpg",
     "body": {
         "divs": [

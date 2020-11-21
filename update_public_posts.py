@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import re
 import json
 import glob
 import os
@@ -73,7 +74,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-            
+
 def load_image(image_fp):
     image = Image.open(image_fp).convert("RGBA")
     return image
@@ -81,8 +82,8 @@ def load_image(image_fp):
 
 
 def add_watermark(image_obj, **kwargs):
-    photo_date = kwargs["date"]
-    upper_right_text = f"© Alex Galea {photo_date[:4]}"
+    photo_date = re.findall("\d{4}", kwargs["date"])[0]
+    upper_right_text = f"© Alex Galea {photo_date}"
     bottom_left_text = "photos.alexgalea.ca"
     
     txt_obj = Image.new("RGBA", image_obj.size, (255,255,255,0))
@@ -140,7 +141,7 @@ def read_post_images(post_fp):
                     continue
                 images.append({})
                 images[-1]["file"] = photo
-                images[-1]["date"] = post["photos_taken_date"]
+                images[-1]["date"] = post["photo"]["date_taken"]
     return images
 
 

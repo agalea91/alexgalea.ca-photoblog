@@ -34,7 +34,7 @@
       {{this.$route.params.year}}-{{this.$route.params.month}}
     </div>
     <div class="post-desc">
-      {{postContent.desc}}, <i>{{postContent.photos_taken_date}}</i>
+      {{postContent.photo.desc}} | {{postContent.photo.date_taken}} | {{postContent.photo.location}}
     </div>
     <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
       <div v-if="contentBlock.type === 'text'">

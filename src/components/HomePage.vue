@@ -1,7 +1,7 @@
 <template>
 
   <div id="app">
-    <h1>Alexander Galea's Photoblog</h1>
+    <h1>The Mindful Photoblog</h1>
     <div class="headline-below-h1">
       <p>
         Welcome to my photo gallery<br>
@@ -13,7 +13,7 @@
         <div class="post-summary">
           <div class="post-title">{{ post.title }}</div>
           <div class="post-desc">
-            {{ post.desc }} (<i>{{ post.photos_taken_date }}</i>)
+            {{ post.photo.desc }} {{ post.photo.date_taken }} | {{ post.photo.location }}
           </div>
           <router-link
             :to="{ name: 'post', params: {

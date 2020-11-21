@@ -19,6 +19,7 @@ class Config:
     DIST_DIR = os.path.join(ROOT_DIR, 'dist')
 
     IMG_DIR = os.path.join(ROOT_DIR, "public", "img")
+    # IMG_DIR = "/Users/alex/Google Drive/Photo Blog/posts/img"
     if FLASK_ENV == "development":
         HOST = "http://localhost:8080"
     else:
@@ -26,8 +27,9 @@ class Config:
         HOST = "https://photos.alexgalea.ca"
 
     IMG_IGNORE = [
-        "2020/09/1-thunderbird",
-        "2020/10/3-earthquake-foot",
+        "2020/09/_thunderbird",
+        "2020/10/_earthquake-foot",
+        "2020/11/_dying-of-thirst"
     ]
 
     if not os.path.exists(DIST_DIR):

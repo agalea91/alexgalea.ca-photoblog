@@ -23,7 +23,6 @@ from . import api_rest
 
 
 
-
 # EXAMPLE DATA for `post_file` variable used below:
 #
 # -> '/app/public/img/2020/10/1-spanish-banks/post.json'
