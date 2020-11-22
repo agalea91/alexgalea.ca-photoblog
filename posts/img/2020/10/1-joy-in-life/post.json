@@ -4,17 +4,17 @@
         "source": {
             "url": "",
             "title": "",
-            "author": "",
+            "author": "George Bernard Shaw",
             "year": ""
         },
-        "tags": []
+        "tags": ["Motivation", "Productivity", "Joy"]
     },
     "photo": {
         "photographer": "Alexander Galea",
-        "desc": "",
-        "date_taken": "",
-        "location": "",
-        "tags": []
+        "desc": "Guinness running around the beach at sunset",
+        "date_taken": "April 2020",
+        "location": "Spanish Banks",
+        "tags": ["Dog", "Sunset", "Beach", "Mountains"]
     },
     "cover_image": "3-20200415-IMG_5200.jpg",
     "body": {

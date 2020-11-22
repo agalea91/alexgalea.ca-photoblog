@@ -1,0 +1,58 @@
+{
+    "title": "Totem Pole Coat of Arms",
+    "quote": {
+        "source": {
+            "url": "https://library.si.edu/digital-library/book/cruiseamonghaida00dors",
+            "title": "A cruise among Haida and Tlingit villages about Dixon's Entrance",
+            "author": "George A. Dorsey",
+            "year": "1898"
+        },
+        "tags": ["Totem Pole", "First Nations", "Pacific Northwest"]
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "A totem pole carved by Joe David, in honor of the Tla-o-qui-aht Chiefs, gifted to the Tofino community in 2018",
+        "date_taken": "November 2020",
+        "location": "Tofino, BC",
+        "tags": ["Totem Pole"]
+    },
+    "cover_image": "1-20201115-IMG_9625.jpg",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "The totem pole is a coat of arms"
+            },
+            {
+                "type": "photo",
+                "file": "1-20201115-IMG_9625.jpg"
+            },
+            {
+                "type": "text",
+                "text": "it is an epitome of the owner's mythical ancestry"
+            },
+            {
+                "type": "photo",
+                "file": "2-20201115-IMG_9609.jpg"
+            },
+            {
+                "type": "text",
+                "text": "from its curious conventionalized animals or hieroglyphs we read into the past"
+            },
+            {
+                "type": "photo",
+                "file": "3-20201115-IMG_9620.jpg"
+            },
+            {
+                "type": "text",
+                "text": "of their struggles and friendships with the monsters of the deep and the creatures of the land and air. <br><br><i>- George A. Dorsey, 1898</i>"
+            },
+            {
+                "type": "photo",
+                "file": "4-20201115-IMG_9624.jpg"
+            }
+        ]
+    }
+}
+
+

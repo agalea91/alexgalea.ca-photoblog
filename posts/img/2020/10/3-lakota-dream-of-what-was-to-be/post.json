@@ -1,0 +1,48 @@
+{
+    "title": "Lakota dream of what was to be",
+    "desc": "Looking down on Vancouver from Crown Mountain",
+    "photos_taken_date": "August 2020",
+    "cover_image": "1-20201007-IMG_7494-2.jpg",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "A long time ago, my father told me what his father told him."
+            },
+            {
+                "type": "photo",
+                "file": "1-20201007-IMG_7494-2.jpg"
+            },
+            {
+                "type": "text",
+                "text": "That there was once a Lakota holy man, called Drinks Water, who dreamed what was to be."
+            },
+            {
+                "type": "photo",
+                "file": "2-20201007-IMG_7443.jpg"
+            },
+            {
+                "type": "text",
+                "text": "That the four-leggeds were going back into the earth and that a strange race had woven a spider's web all around the Lakotas."
+            },
+            {
+                "type": "photo",
+                "file": "3-20201007-IMG_7503.jpg"
+            },
+            {
+                "type": "text",
+                "text": "When this happens, you shall live in square gray houses, in a barren land."
+            },
+            {
+                "type": "photo",
+                "file": "4-20201007-IMG_7455.jpg"
+            },
+            {
+                "type": "text",
+                "text": "And beside those square gray houses you shall starve.<br><br><i>- Ilehaka Stipa, Oglala Lakota Sioux, 1932</i>"
+            }
+        ]
+    }
+}
+
+

@@ -1,0 +1,70 @@
+{
+    "title": "",
+    "quote": {
+        "source": {
+            "url": "",
+            "title": "",
+            "author": "",
+            "year": ""
+        },
+        "tags": []
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "",
+        "date_taken": "",
+        "location": "",
+        "tags": []
+    },
+    "cover_image": "",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": "<br><br><i>- Author</i>"
+            }
+        ]
+    }
+}
+
+

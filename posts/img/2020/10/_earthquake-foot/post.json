@@ -1,0 +1,62 @@
+{
+    "title": "Earthquake Foot",
+    "quote": {
+        "source": {
+            "url": "",
+            "title": "",
+            "author": "",
+            "year": ""
+        },
+        "tags": []
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "",
+        "date_taken": "August 2020",
+        "location": "",
+        "tags": []
+    },
+    "cover_image": "",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "TODO: find stormy photos of howe sound!"
+            },
+            {
+                "type": "text",
+                "text": "On the coast of what is now the state of Washington, Thunderbird and Whale had a fight,"
+            },
+            {
+                "type": "photo",
+                "file": ""
+            },
+            {
+                "type": "text",
+                "text": "This caused the mountains to shake and uprooted the trees. The ocean rose up and covered the whole land."
+            },
+            {
+                "type": "text",
+                "text": "To the North on Vancouver Island, dwarfs who lived in a mountain were dancing around their drum."
+            },
+            {
+                "type": "text",
+                "text": "When someone accidentally kicked the drum, they got \"earthquake foot\", thereafter causing an earquake with each step."
+            },
+            {
+                "type": "text",
+                "text": "The land shook and the ocean flooded in."
+            },
+            {
+                "type": "photo",
+                "file": "20201007-IMG_7508.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Everything then drifted away, everything was lost and gone.<br><br><i>- Quileute, Hoh, Nuu-chah-nulth peoples</i>"
+            }
+        ]
+    }
+}
+
+

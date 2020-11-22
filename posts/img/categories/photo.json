@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Totem Pole",
+        "desc": "Monumental carvings, a type of Northwest Coast art, consisting of poles, posts or pillars, carved with symbols or figures.",
+        "desc_url": "https://en.wikipedia.org/wiki/Totem_pole"
+    },
+    {
+        "name": "Hike",
+        "desc": "A long, vigorous walk or jog, usually on trails or footpaths in the mountains.",
+        "desc_url": "https://en.wikipedia.org/wiki/Hiking"
+    },
+    {
+        "name": "Cloudy",
+        "desc": "Visible masses of condensed droplets or frozen crystals suspended in the atmosphere.",
+        "desc_url": "https://en.wikipedia.org/wiki/Cloud"
+    },
+    {
+        "name": "Mountains",
+        "desc": "Large landforms that rise above the surrounding land in a limited area, usually in the form of peaks.",
+        "desc_url": "https://en.wikipedia.org/wiki/Mountain"
+    },
+    {
+        "name": "Dog",
+        "desc": "A domesticated carnivore of the family Canidae. Man's best friend.",
+        "desc_url": "https://en.wikipedia.org/wiki/Dog"
+    },
+    {
+        "name": "Sunset",
+        "desc": "The daily disappearance of the Sun below the horizon due to Earth's rotation.",
+        "desc_url": "https://en.wikipedia.org/wiki/Sunset"
+    },
+    {
+        "name": "Beach",
+        "desc": "A landform alongside a body of water which consists of loose particles.",
+        "desc_url": "https://en.wikipedia.org/wiki/Beach"
+    }
+]

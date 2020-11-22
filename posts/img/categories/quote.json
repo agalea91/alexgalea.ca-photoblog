@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Malazan",
+        "desc": "Malazan Book of the Fallen is a high fantasy book series by the Canadian author Steven Erikson.",
+        "desc_url": "https://en.wikipedia.org/wiki/Malazan_Book_of_the_Fallen"
+    },
+    {
+        "name": "Death",
+        "desc": "Death is the permanent cessation of all biological functions that sustain a living organism.",
+        "desc_url": "https://en.wikipedia.org/wiki/Death"
+    },
+    {
+        "name": "God",
+        "desc": "A supernatural being considered divine or sacred.",
+        "desc_url": "https://en.wikipedia.org/wiki/Deity"
+    },
+    {
+        "name": "Totem Pole",
+        "desc": "Monumental carvings, a type of Northwest Coast art, consisting of poles, posts or pillars, carved with symbols or figures.",
+        "desc_url": "https://en.wikipedia.org/wiki/Totem_pole"
+    },
+    {
+        "name": "First Nations",
+        "desc": "The First Nations are the predominant indigenous peoples in Canada south of the Arctic Circle.",
+        "desc_url": "https://en.wikipedia.org/wiki/First_Nations"
+    },
+    {
+        "name": "Pacific Northwest",
+        "desc": "A geographic region in western North America bounded by the Pacific Ocean to the west and (loosely) by the Rocky Mountains on the east.",
+        "desc_url": "https://en.wikipedia.org/wiki/Pacific_Northwest"
+    },
+    {
+        "Folklore": "Folklore",
+        "desc": "Myths and legends, usually involving gods and supernatural beings, with narratives that play a fundamental role in a society.",
+        "desc_url": "https://en.wikipedia.org/wiki/Folklore"
+    },
+    {
+        "name": "Joy",
+        "desc": "A feeling of great pleasure and happiness.",
+        "desc_url": "https://en.wikipedia.org/wiki/Joy"
+    }
+]
