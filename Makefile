@@ -1,8 +1,13 @@
 .PHONY: build_server run_server
 
 
-run: build-server build-client
+run:
+	echo "Starting server and client apps. Not re-building."
 	docker-compose up
+
+build: build-server build-client
+	echo "Server and client docker apps have been built"
+
 
 
 build-server:
