@@ -1,19 +1,26 @@
 <template>
 
   <div id="app">
-    <h1>The Mindful Photoblog</h1>
+    <h1>Raven's Light</h1>
+    <div id="h1-lower" class="header-homepage-link">A Photo Journal</div>
     <div class="headline-below-h1">
-      <p>
-        Welcome to my photo gallery<br>
-        I am glad that you've come.
+      <p class="headline-main-text">
+        Raven is said to have brought light to the world.
+        <br>
+        <br>
+        This gallery is a brief look into that world, as I see it.
+        <br>
+        <br>
+        - Alex
       </p>
     </div>
+    <!-- <div>{{posts[0].photo.desc}}</div> -->
     <ul>
       <li v-for="post in posts" :key="post.url_path">
         <div class="post-summary">
           <div class="post-title">{{ post.title }}</div>
           <div class="post-desc">
-            {{ post.photo.desc }} {{ post.photo.date_taken }} | {{ post.photo.location }}
+            {{ post.photo.desc }} | <i>{{ post.photo.date_taken }}</i> | <i>{{ post.photo.location }}</i>
           </div>
           <router-link
             :to="{ name: 'post', params: {
@@ -46,6 +53,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
+.headline-main-text {
+  // font-family: 'Playfair Display', serif;
+  font-family: 'Nothing You Could Do', cursive;
+  padding-bottom: 25px;
+  font-size: 1.2rem;
+  display: inline-block;
+  width: 400px;
+  max-width: 90%;
+  height: 50px;
+}
 .post-title {
   font-family: 'Playfair Display', serif;
   margin: 40px 0 0;
@@ -85,6 +102,9 @@ a {
   margin: 10px;
 }
 .headline-below-h1 {
-  padding: 20px
+  display: inline-block;
+  padding: 20px;
+  width: 280px;
+  max-width: 90%;
 }
 </style>

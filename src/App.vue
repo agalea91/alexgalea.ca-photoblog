@@ -53,7 +53,21 @@
   }
 
 }
-#header-homepage-link{
+body { margin: 0; }
+
+// H1 - internal homepage linking header
+h1 {
+  font-family: 'Playfair Display', serif;
+  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#h1-lower{
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 1rem;
+}
+.header-homepage-link{
   font-family: 'Playfair Display', serif;
   text-decoration: none;
   color: #2c3e50;
@@ -64,13 +78,9 @@
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
+}
 
-}
-body { margin: 0; }
-h1 {
-  font-family: 'Playfair Display', serif;
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
-}
+// Nav - navigation elements
 #nav {
   padding: 30px;
   a {

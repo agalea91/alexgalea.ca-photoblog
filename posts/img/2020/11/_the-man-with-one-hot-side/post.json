@@ -1,0 +1,74 @@
+{
+    "title": "",
+    "quote": {
+        "source": {
+            "url": "https://www.hancockhouse.com/products/kwakiutl-legends-as-told-to-pamela-whitaker-by-chief-james-wallas",
+            "title": "Kwakiutl Legends of Chief James Wallas",
+            "author": "Chief James Wallas, Pamela Whitaker",
+            "year": "2016"
+        },
+        "tags": []
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "The sun rises over Long Beach",
+        "date_taken": "November 2020",
+        "location": "Tofino",
+        "tags": ["Beach", "Sunrise", "Cloudy", "Ocean"]
+    },
+    "cover_image": "4-20201115-IMG_9535.jpg",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "The people of the village did not know that the man with one hot side was part sunshine."
+            },
+            {
+                "type": "photo",
+                "file": "1-20201115-IMG_9529.jpg"
+            },
+            {
+                "type": "text",
+                "text": "One day ... there was a war canoe approaching the village."
+            },
+            {
+                "type": "photo",
+                "file": "2-20201115-IMG_9547.jpg"
+            },
+            {
+                "type": "text",
+                "text": "[Hot Side] gave his son a bow and told him to shoot a wad of shredded cedar bark into the approaching war canoe. When he did so the warriors laughed derisively. So did those watching from their hiding places on shore."
+            },
+            {
+                "type": "photo",
+                "file": "3-20201115-IMG_9567.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Suddenly the right side of the man's body lit up like a midday sun while the left die remained as cool as evening. He turned his hot side towards the attackers until the wad of shredded cedar bark caught fire and the canoe began to smoke."
+            },
+            {
+                "type": "photo",
+                "file": "4-20201115-IMG_9535.jpg"
+            },
+            {
+                "type": "text",
+                "text": "\"Don't do it! Don't do it!\" the warriors cried in fear, but he continued to direct his hot side toward them, The canoe caught fire, and the warriors jumped to the water but were burned before they reached it. All of them burned as well as their canoe, paddles and weapons."
+            },
+            {
+                "type": "photo",
+                "file": "5-20201115-IMG_9536.jpg"
+            },
+            {
+                "type": "text",
+                "text": "After that the people of the village no longer laughed at the man with one hot side. <br><br><i>- Chief James Wallas</i>"
+            },
+            {
+                "type": "photo",
+                "file": "6-20201115-IMG_9540.jpg"
+            }
+        ]
+    }
+}
+
+

@@ -36,7 +36,7 @@ export default {
       return [
         {
           name: 'description',
-          content: this.postContent.desc + '. High quality photos for download.'
+          content: this.postContent.photo.desc.replace(/\.$/, '') + '. High quality photos for download.'
         }
       ]
     }

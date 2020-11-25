@@ -4,6 +4,7 @@ import re
 import json
 import glob
 import os
+import sys
 import shutil
 import pathlib
 
@@ -15,8 +16,11 @@ from PIL import ImageFont
 
 POST_PATH = "posts/img/*/*/*"
 PUB_PATH = "public"
+IGNORE_POSTS_STARTSWITH = "_"
 WATERMARK_FONT_SIZE = 25
 MAX_PX_SIZE = 1280
+WATERMARK_PHOTOGRAPHER = "Alexander Galea"
+WATERMARK_DOMAIN = "https://ravenslightphoto.com/"
 
 def main():
     args = parse_args()
@@ -24,13 +28,25 @@ def main():
     if post_slug:
         print(f"Copying single post: {post_slug}")
     else:
-        print("Copying all posts")
-    
+        print("Refreshing all posts")
+
+    pub_img_fp = pathlib.Path(PUB_PATH, "img")
+    ans = input(f"WARNING: about to delete {str(pub_img_fp)} folder. Press enter to proceed.")
+    if ans.strip() == "":
+        shutil.rmtree(pub_img_fp)
+    else:
+        sys.exit("User exit")
+
     post_fps = read_posts()
     for fp in post_fps:
-        if post_slug and not str(fp).endswith(post_slug):
+        if fp.parts[-1].startswith(IGNORE_POSTS_STARTSWITH):
+            print(f"Ignoring {fp}")
             continue
-        print(f"Processing {fp}")
+        elif post_slug and not str(fp).endswith(post_slug):
+            print(f"Ignoring {fp}")
+            continue
+        else:
+            print(f"Processing {fp}")
         try:
             image_files = read_post_images(fp)
         except:
@@ -81,10 +97,10 @@ def load_image(image_fp):
     
 
 
-def add_watermark(image_obj, **kwargs):
-    photo_date = re.findall("\d{4}", kwargs["date"])[0]
-    upper_right_text = f"© Alex Galea {photo_date}"
-    bottom_left_text = "photos.alexgalea.ca"
+def add_watermark(image_obj, date):
+    photo_date = re.findall("\d{4}", date)[0]
+    upper_right_text = f"© {WATERMARK_PHOTOGRAPHER} {photo_date}"
+    bottom_left_text = f"{WATERMARK_DOMAIN}"
     
     txt_obj = Image.new("RGBA", image_obj.size, (255,255,255,0))
     font = ImageFont.truetype("./fonts/PlayfairDisplay-Black.ttf", WATERMARK_FONT_SIZE)
@@ -146,7 +162,8 @@ def read_post_images(post_fp):
 
 
 def write_image(image_obj, pub_image_fp):
-    image_obj.convert("RGB").save(pub_image_fp)
+    image_obj.convert("RGB").save(pub_image_fp, optimize=True, quality=95)
+    print(f"{ pathlib.Path(pub_image_fp).stat().st_size / 1e3 } kb")
 
 
 if __name__ == "__main__":

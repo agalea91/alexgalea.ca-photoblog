@@ -1,8 +1,3 @@
-"""
-REST API Resource Routing
-http://flask-restplus.readthedocs.io
-"""
-
 from datetime import datetime
 from flask import request, current_app
 from flask_restplus import Resource
@@ -12,15 +7,7 @@ import json
 from copy import copy
 from typing import List
 
-from .security import require_auth
-from . import api_rest
-
-
-# class SecureResource(Resource):
-#     """ Calls require_auth decorator on all requests """
-#     method_decorators = [require_auth]
-
-
+from app.api import api_rest
 
 
 # EXAMPLE DATA for `post_file` variable used below:
@@ -66,6 +53,11 @@ def _get_url_path(post_file) -> str:
     return f"/album/{slug}"
 
 
+def _validate_post_fields(post):
+    # TODO: implement verification
+    pass
+
+
 
 @api_rest.route('/posts')
 class Posts(Resource):
@@ -109,9 +101,10 @@ class Posts(Resource):
         post_files = self._map_fs_post_files(apply_filter=True)
         posts = []
         for post_file in post_files:
-            posts.append(self._get_response_data(post_file, get_neighbours=True))
+            resp_data = self._get_response_data(post_file, get_neighbours=True)
+            posts.append(copy(resp_data))
 
-        current_app.logger.info("Posts:")
+        current_app.logger.info("GET request posts being returned:")
         current_app.logger.info(json.dumps(posts, indent=2))
         if not posts:
             current_app.logger.warning("No posts found!")
@@ -119,7 +112,7 @@ class Posts(Resource):
         return {'posts': posts}
 
     def _parse_request_args(self, args):
-        current_app.logger.info("Args:")
+        current_app.logger.info("GET request args:")
         current_app.logger.info(json.dumps(args, indent=2))
 
         self.year = args.get("year", None)
@@ -163,23 +156,31 @@ class Posts(Resource):
         post_files = post_files[:limit]
 
         # Apply others
-        post_files = self.apply_ignore_filter(post_files)
+        # post_files = self.apply_ignore_filters(post_files)
 
-        current_app.logger.info(f"Found {len(post_files)} post files:")
         current_app.logger.info(post_files)
+
         return post_files
 
 
-    def apply_ignore_filter(self, post_files):
-        _post_files = []
-        for post in post_files:
-            for pattern in current_app.config["IMG_IGNORE"]:
-                if pattern in post:
-                    break
-            else:
-                print(post)
-                _post_files.append(post)
-        return _post_files
+    # def apply_ignore_filters(self, post_files):
+    #     _post_files = []
+    #     for post in post_files:
+    #         post_name = _get_post_name(post)
+    #         if current_app.config["IMG_IGNORE_UNDERSCORE_NAMES"]:
+    #             if post_name.startswith("_"):
+    #                 current_app.logger.info(f"Ignoring post: {post_name}")
+    #                 continue
+    #         if current_app.config["IMG_IGNORE"]:
+    #             parent_loop_continue = False
+    #             for pattern in current_app.config["IMG_IGNORE"]:
+    #                 if pattern in post:
+    #                     parent_loop_continue = True
+    #             if parent_loop_continue:
+    #                 current_app.logger.info(f"Ignoring post: {post_name}")
+    #                 continue
+    #         _post_files.append(post)
+    #     return _post_files
 
 
 
@@ -187,6 +188,9 @@ class Posts(Resource):
         """ Parse post data and return dict to append to response."""
         with open(post_file, "r") as f:
             post = json.load(f)
+
+        # Check that post is valid
+        _validate_post_fields(post)
 
         # Parse fields from file path / name
         post["date"] = _get_post_date(post_file)
@@ -197,9 +201,9 @@ class Posts(Resource):
 
         if get_neighbours:
             _prev_file, _next_file = self._get_neighbour_posts(post_file)
-            current_app.logger.info("Found neighbors:")
-            current_app.logger.info(_prev_file)
-            current_app.logger.info(_next_file)
+            # current_app.logger.info("Found neighbors:")
+            # current_app.logger.info(_prev_file)
+            # current_app.logger.info(_next_file)
             # post["prev_date"] = _get_post_date(_prev_file)
             # post["next_date"] = _get_post_date(_next_file)
 
@@ -227,7 +231,7 @@ class Posts(Resource):
                     div["file"] = os.path.join(path, div["file"])
         else:
             del post["body"]
-        
+
         return post
 
     
@@ -259,7 +263,6 @@ class Posts(Resource):
                         break
                 elif i == (size - 2):
                     if post_file == next_file:
-                        current_app.logger.info("YOU ARE HERE")
                         _prev = file
                         _next = ""
                         break
@@ -272,6 +275,16 @@ class Posts(Resource):
         return _prev, _next
 
 
+
+
+
+
+
+
+# from app.api.security import require_auth
+# class SecureResource(Resource):
+#     """ Calls require_auth decorator on all requests """
+#     method_decorators = [require_auth]
 
 
 # @api_rest.route('/secure-resource/<string:resource_id>')

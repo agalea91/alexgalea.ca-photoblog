@@ -30,8 +30,18 @@
         "desc_url": "https://en.wikipedia.org/wiki/Sunset"
     },
     {
+        "name": "Sunrise",
+        "desc": "The moment when the upper limb of the Sun appears on the horizon in the morning.",
+        "desc_url": "https://en.wikipedia.org/wiki/Sunrise"
+    },
+    {
         "name": "Beach",
         "desc": "A landform alongside a body of water which consists of loose particles.",
         "desc_url": "https://en.wikipedia.org/wiki/Beach"
+    },
+    {
+        "name": "Ocean",
+        "desc": "A body of water that composes much of a planet's hydrosphere.",
+        "desc_url": "https://en.wikipedia.org/wiki/Ocean"
     }
 ]

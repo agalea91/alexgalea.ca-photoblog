@@ -1,6 +1,22 @@
 {
     "title": "Lakota dream of what was to be",
-    "desc": "Looking down on Vancouver from Crown Mountain",
+    "quote": {
+        "source": {
+            "url": "https://en.wikipedia.org/wiki/Black_Elk_Speaks",
+            "title": "Ilehaka Stipa",
+            "author": "Oglala Lakota Sioux",
+            "year": "1932"
+        },
+        "tags": ["First Nations", "Folklore", "Legends", "Death"]
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "Looking down on Vancouver from Crown Mountain",
+        "date_taken": "August 2020",
+        "location": "North Vancouver",
+        "tags": ["Hike", "Cloudy", "Vancouver", "City"]
+    },
+    "desc": "",
     "photos_taken_date": "August 2020",
     "cover_image": "1-20201007-IMG_7494-2.jpg",
     "body": {

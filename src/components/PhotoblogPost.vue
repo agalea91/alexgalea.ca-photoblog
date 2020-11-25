@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <router-link to="/" id="header-homepage-link">
-      <div>The Mindful Photoblog</div>
+    <router-link to="/" id="homepage-link" class="header-homepage-link">
+      <div>Raven's Light</div>
+      <div id="h1-lower">A Photo Journal</div>
     </router-link>
     <div class="neighbour-album-nav">
       <router-link
@@ -31,10 +32,12 @@
     <div style="padding-bottom:25px;"></div>
     <h1>{{postContent.title}}</h1>
     <div class="post-author">
-      {{this.$route.params.year}}-{{this.$route.params.month}}
+      {{ postContent.photo.date_taken }} | {{ postContent.photo.location }}
+      <!-- {{this.$route.params.year}}-{{this.$route.params.month}} -->
     </div>
     <div class="post-desc">
-      {{postContent.photo.desc}} | {{postContent.photo.date_taken}} | {{postContent.photo.location}}
+      {{postContent.photo.desc}}
+      <!-- {{postContent.photo.desc}} | {{postContent.photo.date_taken}} | {{postContent.photo.location}} -->
     </div>
     <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
       <div v-if="contentBlock.type === 'text'">
@@ -91,6 +94,10 @@ html { width: 100%; }
   // font-size: 1.5rem;
   // font-size: 1vw;
 // }
+
+#h1-lower {
+  font-size: 40%;
+}
 h1 {
   // font-family: 'Cinzel Decorative', cursive;
   font-size: 2rem;
