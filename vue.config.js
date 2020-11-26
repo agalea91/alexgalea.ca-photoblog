@@ -1,9 +1,6 @@
 // const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  // publicPath: '/posts/',
-  // By default, Vue CLI assumes your app will be deployed at the root of a domain, e.g. https://www.my-app.com/. If your app is deployed at a sub-path, you will need to specify that sub-path using this option. For example, if your app is deployed at https://www.foobar.com/my-app/, set publicPath to '/my-app/'.
-
   outputDir: 'dist',
   assetsDir: 'static',
 
@@ -17,7 +14,8 @@ module.exports = {
   devServer: {
     proxy: {
       '/api*': {
-        // Forward frontend dev server request for /api to django dev server
+        // target: 'http://localhost:5000/'
+        // Line below is for docker
         target: 'http://server:5000/'
       }
     }
