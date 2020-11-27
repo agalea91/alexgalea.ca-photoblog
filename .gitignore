@@ -1,4 +1,4 @@
-posts/img/**/*.jpg
+*.jpg
 
 *.pyc
 .cache

@@ -1,19 +1,37 @@
-# Alex Galra's Photoblog
+# Raven's Light Photo Journal
 
+## Project at a glance
 
-## Docker
+There are three main things going on here:
+| Folder | Description |
+| - | - |
+| `src` | Vue web app. My photoblog frontend application.
+| `app` |  Flask server. Backend server providing data to the web app.
+| `posts` | Posts directory. Put new posts here and original size images.
 
-The docker version is a WIP, but it can be started with `make run`
+## Docker quick start
 
-For now, instead get the app up and running by following the instructions in the Dockerfiles. You need to start the Flask server and the Vue app using yarn.
+There are two apps which should both be run on the development machine:
 
-## Dependencies
+*Flask server*
+```
+docker-compose build server
+docker-compose run --service-ports server
+```
+
+*Vue dev server*
+```
+docker-compose build client
+docker-compose run --service-ports client
+```
+
+## Running for development without Docker
+
+### Dependencies
 
 - Yarn
 - Vue Cli 3
 - Python 3
-
-## Running for development
 
 ### Vue
 ```
@@ -27,8 +45,16 @@ pip install -r requirements.txt
 flask", "run", "--host", "0.0.0.0
 ```
 
+## Posts
 
-## Adding a blog post
+Refresh `public/img` with folders and resized, watermarked images from `posts` by running
+```
+python update_public_posts.py
+```
+
+Adjust global variables in `update_public_posts.py` to set image size and watermark details.
+
+### Adding a blog post
 
 TLDR: Add a new folder to `posts`, create a `post.json` and copy over images. Run `python update_public_postss.py` to copy changes to live dev site.
 
@@ -68,12 +94,3 @@ posts
                 ├── IMG_6308.jpg
                 └── post.json
 ```
-
-These are copied over to the public folder, and images are converted to internet quality and watermarked.
-
-Do this by running:
-
-```
-python update_public_posts.py
-```
-
