@@ -23,18 +23,17 @@ services:
     volumes:
       - ./app:/app/app
       - ./public:/app/public
-      - ./src:/app/src
       - ./dist:/app/dist
 
     # TODO: remove this when not testing
     environment: 
       - FLASK_ENV=development
 
-  build_client:
-    build:
-      context: .
-      dockerfile: Dockerfile.client.build
-    volumes:
-      - ./dist:/app/dist
+  # build_client:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.client.build
+  #   volumes:
+  #     - ./dist:/app/dist
 
 

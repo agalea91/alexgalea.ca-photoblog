@@ -1,7 +1,8 @@
 import axios from 'axios'
+axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT
 
 let $axios = axios.create({
-  baseURL: '/api/',
+  // baseURL: '/api/',
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' }
 })
