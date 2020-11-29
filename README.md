@@ -29,9 +29,11 @@ yarn serve
 ### Eb app
 Run flask server locally / test
 ```
+./sync_posts_eb_app.sh
 cd eb-app
 python application.py
 ```
+
 
 
 ## Docker quick start
