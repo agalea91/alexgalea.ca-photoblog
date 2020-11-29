@@ -67,8 +67,8 @@
         </div>
       </div>
     </div>
-    <div class="text-block" id="author-text" v-if=postContent.attribution>
-      - <i>{{postContent.attribution}}</i>
+    <div class="text-block" id="author-text" v-if=postContent.quote.attribution>
+      - <i>{{postContent.quote.attribution}}</i>
     </div>
 
   </div>
@@ -151,10 +151,6 @@ h1 {
   width: 500px;
   max-width: 90%;
   text-align: center;
-}
-.text-block:last-of-type {
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
 #author-text {
   margin-top: 0;
