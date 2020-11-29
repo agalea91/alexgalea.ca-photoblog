@@ -1,5 +1,7 @@
 import axios from 'axios'
 // Set VUE_APP_API_ENDPOINT in .env.development and .env.production
+// These are automatically loaded when the vue server starts
+// https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
 axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT
 
 let $axios = axios.create({

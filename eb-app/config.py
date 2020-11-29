@@ -2,7 +2,7 @@ import os
 import pathlib
 
 from dotenv import load_dotenv
-load_dotenv("app/.env")
+load_dotenv(".env")
 
 class Config:
     FLASK_ENV =  os.getenv('FLASK_ENV', 'production')
@@ -27,9 +27,3 @@ class Config:
     # ]
 
 
-"""
-Set app.config
-"""
-
-from app import app
-app.config.from_object('app.config.Config')

@@ -39,32 +39,36 @@
       {{postContent.photo.desc}}
       <!-- {{postContent.photo.desc}} | {{postContent.photo.date_taken}} | {{postContent.photo.location}} -->
     </div>
-    <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
-      <div v-if="contentBlock.type === 'text'">
-        <div class="text-block">
-          <p v-html="contentBlock.text"></p>
+    <div class="photo-reel">
+      <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
+        <div v-if="contentBlock.type === 'text'">
+          <div class="text-block">
+            <p v-html="contentBlock.text"></p>
+          </div>
         </div>
-      </div>
-      <div v-if="contentBlock.type === 'photo'">
-        <div
-            class="album-photo-container"
-            data-aos="fade"
-            data-aos-duration="2000"
-            data-aos-easing="ease-in-sine"
-            data-aos-once="true"
-        >
-          <img
-            :src="contentBlock.file"
-            :alt="contentBlock.caption"
-            :id="'album-photo-'+index"
-            class="full-width-photo"
+        <div v-if="contentBlock.type === 'photo'">
+          <div
+              class="album-photo-container"
+              data-aos="fade"
+              data-aos-duration="2000"
+              data-aos-easing="ease-in-sine"
+              data-aos-once="true"
           >
-        <div class="caption-container">
-          <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
-        </div>
+            <img
+              :src="contentBlock.file"
+              :alt="contentBlock.caption"
+              :id="'album-photo-'+index"
+              class="full-width-photo"
+            >
+          <div class="caption-container">
+            <div v-if="contentBlock.caption" class="caption-below-photo">{{contentBlock.caption}}</div>
+          </div>
+          </div>
         </div>
       </div>
-
+    </div>
+    <div class="text-block" id="author-text" v-if=postContent.attribution>
+      - <i>{{postContent.attribution}}</i>
     </div>
 
   </div>
@@ -147,6 +151,14 @@ h1 {
   width: 500px;
   max-width: 90%;
   text-align: center;
+}
+.text-block:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#author-text {
+  margin-top: 0;
+  padding-top: 0;
 }
 .full-width-photo {
   max-width: 100%;

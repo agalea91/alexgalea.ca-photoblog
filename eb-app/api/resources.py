@@ -3,31 +3,41 @@ from flask import request, current_app
 from flask_restplus import Resource
 from glob import glob
 import os
+import re
 import json
+from pathlib import Path
 from copy import copy
 from typing import List
 
-from app.api import api_rest
+from api import api_rest
 
 
 # EXAMPLE DATA for `post_file` variable used below:
 #
 # -> '/app/public/img/2020/10/1-spanish-banks/post.json'
+#
+# The strategy is to match "img\/\d{4}" and cut before.
+
+def _get_img_rel_path(post_file):
+    path = re.sub(r".*\/(img\/\d{4})", r"\1", post_file)
+    return path
 
 def _get_file_path(post_file) -> str:
     """ Parse proper file path and append host """
-    path = post_file.split(os.path.sep)[4:-1]
+    path = _get_img_rel_path(post_file)
+    # TOOD: keep implementing line aboe  ^
+    path = Path(path).parts[:-1] # Drop the file name
     path = os.path.join(
         current_app.config["HOST"],
-        "img",
         *path
     )
     return path
 
 def _get_post_date(post_file) -> str:
     """ Get the date from the post folder path, e.g. 2020-03"""
-    # TODO Should swap over the Pathlib next time I change this.
-    date = "-".join(post_file.split(os.path.sep)[4:-2])
+    path = _get_img_rel_path(post_file)
+    path_date = Path(path).parts[1:3]
+    date = "-".join(path_date)
     return date
 
 def _get_post_year(post_file) -> str:
@@ -42,14 +52,13 @@ def _get_post_month(post_file) -> str:
 
 def _get_post_name(post_file) -> str:
     """ Get post name, e.g. 1-panorama-ridge """
-    name = post_file.split(os.path.sep)[-2]
+    name = Path(post_file).parts[-2]
     return name
 
 def _get_url_path(post_file) -> str:
     """ Set the URL path of the post based on the path. """
-    slug = os.path.join(
-        *post_file.split(os.path.sep)[4:-1]
-    )
+    path = _get_img_rel_path(post_file)
+    slug = Path(*Path(path).parts[1:-1])
     return f"/album/{slug}"
 
 
@@ -281,16 +290,3 @@ class Posts(Resource):
 
 
 
-# from app.api.security import require_auth
-# class SecureResource(Resource):
-#     """ Calls require_auth decorator on all requests """
-#     method_decorators = [require_auth]
-
-
-# @api_rest.route('/secure-resource/<string:resource_id>')
-# class SecureResourceOne(SecureResource):
-#     """ Unsecure Resource Class: Inherit from Resource """
-
-#     def get(self, resource_id):
-#         timestamp = datetime.utcnow().isoformat()
-#         return {'timestamp': timestamp}

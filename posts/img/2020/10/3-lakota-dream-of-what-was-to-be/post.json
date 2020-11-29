@@ -3,10 +3,11 @@
     "quote": {
         "source": {
             "url": "https://en.wikipedia.org/wiki/Black_Elk_Speaks",
-            "title": "Ilehaka Stipa",
-            "author": "Oglala Lakota Sioux",
+            "title": "Black Elk Speaks",
+            "author": "John G. Neihardt",
             "year": "1932"
         },
+        "attribution": "Black Elk, 1932",
         "tags": ["First Nations", "Folklore", "Legends", "Death"]
     },
     "photo": {
@@ -55,7 +56,7 @@
             },
             {
                 "type": "text",
-                "text": "And beside those square gray houses you shall starve.<br><br><i>- Ilehaka Stipa, Oglala Lakota Sioux, 1932</i>"
+                "text": "And beside those square gray houses you shall starve."
             }
         ]
     }

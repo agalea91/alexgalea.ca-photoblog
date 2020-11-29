@@ -6,8 +6,33 @@ There are three main things going on here:
 | Folder | Description |
 | - | - |
 | `src` | Vue web app. My photoblog frontend application.
-| `app` |  Flask server. Backend server providing data to the web app.
+| `eb-app` |  Newer version of flask server. Backend server providing data to the web app. To be hosted on Elastic Beanstalk.
+| `app` |  Old version of flask server, to be used with docker.
 | `posts` | Posts directory. Put new posts here and original size images.
+
+## Quickstart
+
+### Dependencies
+
+- Yarn
+- Vue Cli 3
+- Python 3
+
+### Vue app
+
+```
+yarn install
+yarn serve
+```
+
+
+### Eb app
+Run flask server locally / test
+```
+cd eb-app
+python application.py
+```
+
 
 ## Docker quick start
 
@@ -27,17 +52,12 @@ docker-compose run --service-ports client
 
 ## Running for development without Docker
 
-### Dependencies
-
-- Yarn
-- Vue Cli 3
-- Python 3
-
 ### Vue
 ```
 yarn install
 yarn serve
 ```
+
 
 ### Flask
 ```

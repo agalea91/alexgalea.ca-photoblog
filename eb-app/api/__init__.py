@@ -1,4 +1,9 @@
 from flask import Blueprint, current_app
+
+
+import werkzeug
+werkzeug.cached_property = werkzeug.utils.cached_property
+
 from flask_restplus import Api
 
 api_bp = Blueprint(
@@ -14,4 +19,4 @@ def add_header(response):
     return response
 
 # Register views for all resources
-from app.api.resources import *
+from api.resources import *
