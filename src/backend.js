@@ -1,4 +1,5 @@
 import axios from 'axios'
+// Set VUE_APP_API_ENDPOINT in .env.development and .env.production
 axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT
 
 let $axios = axios.create({
