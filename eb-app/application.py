@@ -12,7 +12,6 @@ application.register_blueprint(api_bp)
 application.logger.info(Config.FLASK_ENV)
 application.config.from_object('config.Config')
 
-
 # run the app.
 if __name__ == "__main__":
 

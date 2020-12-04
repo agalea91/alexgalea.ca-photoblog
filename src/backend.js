@@ -8,10 +8,7 @@ let $axios = axios.create({
   // baseURL: '/api/',
   timeout: 5000,
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Origin': 'https://api.ravenslightphoto.com',
-    'Access-Control-Allow-Methods': 'OPTIONS,GET'
+    'Content-Type': 'application/json'
   }
 })
 
