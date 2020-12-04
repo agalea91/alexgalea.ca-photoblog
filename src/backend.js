@@ -7,7 +7,12 @@ axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT
 let $axios = axios.create({
   // baseURL: '/api/',
   timeout: 5000,
-  headers: { 'Content-Type': 'application/json' }
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Origin': 'https://api.ravenslightphoto.com',
+    'Access-Control-Allow-Methods': 'OPTIONS,GET'
+  }
 })
 
 // // Request interceptor

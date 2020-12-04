@@ -8,7 +8,7 @@
         Raven is said to have brought light to the world.
         <br>
         <br>
-        This gallery is a brief look into that world, as I see it.
+        This gallery is a brief look into that world, through the lens of my camera.
         <br>
         <br>
         - Alex
