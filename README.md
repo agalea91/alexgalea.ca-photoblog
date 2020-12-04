@@ -18,6 +18,15 @@ There are three main things going on here:
 - Vue Cli 3
 - Python 3
 
+### How to update the site
+```
+# Update images in eb-app and deploy Flask app to Elastic Beanstalk
+python update_server.sh 
+
+# Build and upload vue app to s3
+python update_client.sh
+```
+
 ### Vue app
 
 ```
