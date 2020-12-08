@@ -37,7 +37,6 @@
     </div>
     <div class="post-desc">
       {{postContent.photo.desc}}
-      <!-- {{postContent.photo.desc}} | {{postContent.photo.date_taken}} | {{postContent.photo.location}} -->
     </div>
     <div class="photo-reel">
       <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">

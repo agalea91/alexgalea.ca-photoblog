@@ -21,6 +21,8 @@ export default {
   data () {
     return {
       postContent: {
+        'quote': {},
+        'photo': {},
         'body': { 'divs': [] }
       },
       error: ''
@@ -31,15 +33,15 @@ export default {
       return {
         inner: this.postContent.title
       }
-    },
-    meta: function () {
-      return [
-        {
-          name: 'description',
-          content: this.postContent.photo.desc.replace(/\.$/, '') + '. High quality photos for download.'
-        }
-      ]
     }
+    // meta: function () {
+    //   return [
+    //     {
+    //       name: 'description',
+    //       content: this.postContent.photo.desc.replace(/\.$/, '') + '. High quality photos for download.'
+    //     }
+    //   ]
+    // }
   },
   methods: {
     fetchPosts: function () {
@@ -49,7 +51,7 @@ export default {
         foldername: this.$route.params.post_name,
         include_post_content: 'true'
       }
-      console.log('Fetching posts from vue frontend')
+      // console.log('Fetching posts from vue frontend')
       $backend.fetchPosts(args)
         .then(responseData => {
           try {

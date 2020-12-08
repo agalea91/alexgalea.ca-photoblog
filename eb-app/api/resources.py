@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 from flask import request, current_app
 from flask_restplus import Resource
@@ -10,9 +11,6 @@ from copy import copy
 from typing import List
 
 from api import api_rest
-
-import logging
-logger = logging.getLogger(__name__)
 
 
 # EXAMPLE DATA for `post_file` variable used below:
@@ -116,16 +114,16 @@ class Posts(Resource):
             resp_data = self._get_response_data(post_file, get_neighbours=True)
             posts.append(copy(resp_data))
 
-        current_app.logger.error("GET request posts being returned:")
-        current_app.logger.error(json.dumps(posts, indent=2))
+        current_app.logger.debug("GET request posts being returned:")
+        current_app.logger.debug(json.dumps(posts, indent=2))
         if not posts:
             current_app.logger.warning("No posts found!")
 
         return {'posts': posts}
 
     def _parse_request_args(self, args):
-        current_app.logger.error("GET request args:")
-        current_app.logger.error(json.dumps(args, indent=2))
+        current_app.logger.debug("GET request args:")
+        current_app.logger.debug(json.dumps(args, indent=2))
 
         self.year = args.get("year", None)
         self.month = args.get("month", None)
@@ -170,7 +168,7 @@ class Posts(Resource):
         # Apply others
         # post_files = self.apply_ignore_filters(post_files)
 
-        current_app.logger.error(post_files)
+        current_app.logger.debug(post_files)
 
         return post_files
 
@@ -181,7 +179,7 @@ class Posts(Resource):
     #         post_name = _get_post_name(post)
     #         if current_app.config["IMG_IGNORE_UNDERSCORE_NAMES"]:
     #             if post_name.startswith("_"):
-    #                 current_app.logger.error(f"Ignoring post: {post_name}")
+    #                 current_app.logger.debug(f"Ignoring post: {post_name}")
     #                 continue
     #         if current_app.config["IMG_IGNORE"]:
     #             parent_loop_continue = False
@@ -189,7 +187,7 @@ class Posts(Resource):
     #                 if pattern in post:
     #                     parent_loop_continue = True
     #             if parent_loop_continue:
-    #                 current_app.logger.error(f"Ignoring post: {post_name}")
+    #                 current_app.logger.debug(f"Ignoring post: {post_name}")
     #                 continue
     #         _post_files.append(post)
     #     return _post_files
@@ -199,7 +197,7 @@ class Posts(Resource):
     def _get_response_data(self, post_file, get_neighbours=False) -> dict:
         """ Parse post data and return dict to append to response."""
 
-        current_app.logger.error(f"Opening post file: {post_file}")
+        current_app.logger.debug(f"Opening post file: {post_file}")
 
         with open(post_file, "r") as f:
             post = json.load(f)
@@ -216,9 +214,9 @@ class Posts(Resource):
 
         if get_neighbours:
             _prev_file, _next_file = self._get_neighbour_posts(post_file)
-            # current_app.logger.error("Found neighbors:")
-            # current_app.logger.error(_prev_file)
-            # current_app.logger.error(_next_file)
+            # current_app.logger.debug("Found neighbors:")
+            # current_app.logger.debug(_prev_file)
+            # current_app.logger.debug(_next_file)
             # post["prev_date"] = _get_post_date(_prev_file)
             # post["next_date"] = _get_post_date(_next_file)
 

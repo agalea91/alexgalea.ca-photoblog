@@ -28,7 +28,7 @@ export default {
     meta: [
       {
         name: 'description',
-        content: "About Alexander Galea's Photoblog. My album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
+        content: "About Raven's Light Photo Journal. Album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
       }
     ]
   },

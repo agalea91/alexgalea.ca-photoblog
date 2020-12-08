@@ -30,13 +30,13 @@ export default {
     meta: [
       {
         name: 'description',
-        content: "Welcome to Alexander Galea's Photoblog, featuring landscapes from the Pacific Northwest and Canada's Rocky Mountains."
+        content: "Welcome to Raven's Light Photo Journal, featuring landscapes from the Pacific Northwest and Canada's Rocky Mountains."
       }
     ]
   },
   methods: {
     fetchPosts (args) {
-      console.log('Fetching posts from vue frontend')
+      // console.log('Fetching posts from vue frontend')
       $backend.fetchPosts(args)
         .then(responseData => {
           try {

@@ -30,8 +30,8 @@ export default {
 
   fetchPosts (args) {
     var _args = Object.assign({}, args)
-    console.log('Calling fetchPosts with args:')
-    console.log(_args)
+    // console.log('Calling fetchPosts with args:')
+    // console.log(_args)
     return $axios.get(`posts`, { params: _args })
       .then(response => {
         console.log(response)

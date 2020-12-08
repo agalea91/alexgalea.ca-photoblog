@@ -20,7 +20,7 @@ IGNORE_POSTS_STARTSWITH = "_"
 WATERMARK_FONT_SIZE = 25
 MAX_PX_SIZE = 1280
 WATERMARK_PHOTOGRAPHER = "Alexander Galea"
-WATERMARK_DOMAIN = "https://ravenslightphoto.com/"
+WATERMARK_DOMAIN = "ravenslightphoto.com"
 
 def main():
     args = parse_args()
