@@ -34,7 +34,7 @@ export default {
     // console.log(_args)
     return $axios.get(`posts`, { params: _args })
       .then(response => {
-        console.log(response)
+        // console.log(response)
         return response.data
       })
   }
