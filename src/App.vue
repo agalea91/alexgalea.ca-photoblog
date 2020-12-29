@@ -55,6 +55,14 @@
 }
 body { margin: 0; }
 
+a {
+  font-weight: bold;
+  color: #2c3e50;
+  &.router-link-exact-active {
+    color: #545454;
+  }
+}
+
 // H1 - internal homepage linking header
 h1 {
   font-family: 'Playfair Display', serif;
@@ -83,13 +91,6 @@ h1 {
 // Nav - navigation elements
 #nav {
   padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #545454;
-    }
-  }
 }
 #footer {
   font-size: 1rem;

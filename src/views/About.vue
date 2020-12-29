@@ -28,7 +28,7 @@ export default {
     meta: [
       {
         name: 'description',
-        content: "About Raven's Light Photo Journal. Album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
+        content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains. Album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
       }
     ]
   },

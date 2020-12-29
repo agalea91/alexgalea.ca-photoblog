@@ -27,10 +27,13 @@ export default {
     }
   },
   head: {
+    title: {
+      inner: 'Home'
+    },
     meta: [
       {
         name: 'description',
-        content: "Welcome to Raven's Light Photo Journal, featuring landscapes from the Pacific Northwest and Canada's Rocky Mountains."
+        content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains."
       }
     ]
   },
@@ -76,5 +79,5 @@ export default {
 </script>
 
 <style lang="scss">
-.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+// .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
 </style>

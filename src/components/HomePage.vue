@@ -5,7 +5,7 @@
     <div id="h1-lower" class="header-homepage-link">A Photo Journal</div>
     <div class="headline-below-h1">
       <p class="headline-main-text">
-        Raven is said to have brought light to the world.
+        In Native American legends, Raven is said to have brought light to the world.
         <br>
         <br>
         This gallery is a brief look into that world, through the lens of my camera.
@@ -14,11 +14,18 @@
         - Alex
       </p>
     </div>
-    <!-- <div>{{posts[0].photo.desc}}</div> -->
     <ul>
       <li v-for="post in posts" :key="post.url_path">
         <div class="post-summary">
-          <div class="post-title">{{ post.title }}</div>
+          <router-link
+            :to="{ name: 'post', params: {
+              year: post.year,
+              month: post.month,
+              post_name: post.post_name
+            }}"
+          >
+            <div class="post-title">{{ post.title }}</div>
+          </router-link>
           <div class="post-desc">
             {{ post.photo.desc }} | <i>{{ post.photo.date_taken }}</i> | <i>{{ post.photo.location }}</i>
           </div>
@@ -87,9 +94,7 @@ li {
   // display: inline-block;
   margin: 30px;
 }
-a {
-  color: #42b983;
-}
+
 .post-summary {
   width: 1000px;
   max-width: 100%;
