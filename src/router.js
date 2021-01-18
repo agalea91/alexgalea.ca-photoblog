@@ -4,6 +4,7 @@ import VueHead from 'vue-head'
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
+import CookiesPolicy from './views/CookiesPolicy.vue'
 import PhotoblogPost from './views/PhotoblogPost.vue'
 
 Vue.use(VueHead)
@@ -30,8 +31,12 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/cookies-policy',
+      name: 'cookies-policy',
+      component: CookiesPolicy
     }
-
   ],
   mode: 'history'
 })

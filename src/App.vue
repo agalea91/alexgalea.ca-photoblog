@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <GdprAlert/>
     <div id="nav">
       <div v-if="this.$route.name === 'home'">
         <router-link to="/">Latest</router-link>
@@ -12,6 +13,9 @@
         | <router-link to="/about">About</router-link>
       </div>
       <div v-if="this.$route.name === 'about'">
+        <router-link to="/">Home</router-link>
+      </div>
+      <div v-if="this.$route.name === 'cookies-policy'">
         <router-link to="/">Home</router-link>
       </div>
       <div v-if="this.$route.name === 'post'">
@@ -27,6 +31,16 @@
     </div>
   </div>
 </template>
+
+<script>
+import GdprAlert from '@/components/GdprAlert.vue'
+export default {
+  name: 'App',
+  components: {
+    GdprAlert
+  }
+}
+</script>
 
 <style lang="scss">
 // @import url('https://fonts.googleapis.com/css?family=Sree+Krushnadevaraya');
@@ -103,6 +117,11 @@ h1 {
   font-size: 3rem;
   vertical-align: top;
   line-height: 100px;
+}
+
+// GDPR banner
+#gdpr-alert {
+  font-size: 12px;
 }
 
 </style>
