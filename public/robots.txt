@@ -1,0 +1,31 @@
+User-agent: *
+Disallow: /api/
+
+Sitemap: http://ravenslightphoto.com/sitemap.xml
+ 
+#       `        `    ` `      `             `      
+#  `    ` `   `:oyhddmddhyo:``                      
+#         ``+hMMMMMMMMMMMMMMMh+///:-.``             
+#        `+NMMMMMMMMMMMMMMMMMMMMMMMMMMNmhs+-`       
+# `    `:mMMMMMMMMMMMMM+.:MMMMMMMMMMMy`-/oymNh+`   `
+# `   `oMMMMMMMMMMMMMMMdohMMMMMMmhyso:      .+mNo` `
+#    `yMMMMMMMMMMMMMMMMMMMMMMMdsosyyhhhhyysso+/hMh  
+#   `yMMMMMMMMMMMMMMMMMMMMMMMdyso+//::://+sdNMMNmm. 
+#  `oMMMMMMMMMMMMMMMMMMMMMMMMdyyyyyyhddmNNdys/-`    
+#  .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNs:-.`    `      
+#  .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMo`         `      
+# ` hMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   `      `      `
+#   .mMMMMMMMMMMMMMMMMMMMMMMMMMMy                   
+# `  .mMMMMMMMMMMMMMMMMMMMMMMMMM+    `      `      `
+#     `yMMMMMMMMMMMMMMMMMMMMMMMMo                   
+#       :mMMMMMMMMMMMMMMMMMMMMMMd            `      
+#        `+NMMMMMMMMMMMMMMMMMMMMM.                  
+#          `+mMMMMMMMMMMMMMMMMMMM/                  
+#            `:hMMMMMMMMMMMMMMMMM+                  
+# `      `      .sNMMMMMMMMMMMMMM:   `      `      `
+# `      `      ` `oNMMMMMMMMMMMN`   `      `      `
+#                   .dMMMMMMMMMM+                   
+#              `     `NMMMMMMMMs      `             
+#       `      `      -///////-`      `      `      
+#       `      `                      `      `      
+# 
