@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueHead from 'vue-head'
+import VueAnalytics from 'vue-analytics'
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
@@ -10,7 +11,7 @@ import PhotoblogPost from './views/PhotoblogPost.vue'
 Vue.use(VueHead)
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -40,3 +41,10 @@ export default new Router({
   ],
   mode: 'history'
 })
+
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_GA_UNIVERSAL_ANALYTICS_ID,
+  router
+})
+
+export default router

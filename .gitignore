@@ -3,7 +3,6 @@
 *.pyc
 .cache
 .mypy_cache\
-.env
 .venv
 
 /dist

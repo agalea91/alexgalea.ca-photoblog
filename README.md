@@ -63,6 +63,20 @@ docker-compose run --service-ports client
 
 ## Running for development without Docker
 
+### Quickstart
+
+```
+# Start the server
+./run_server.sh
+
+# ** Open a new window
+
+# Start the client
+./run_client.sh
+
+# ** open http://localhost:8080/
+```
+
 ### Vue
 ```
 yarn install
