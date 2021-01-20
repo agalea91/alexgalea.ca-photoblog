@@ -33,6 +33,12 @@ export default {
       return {
         inner: this.postContent.title
       }
+    },
+    script: function () {
+      return [{
+        t: 'application/ld+json',
+        i: this.postContent.jsonld_schema
+      }]
     }
     // meta: function () {
     //   return [

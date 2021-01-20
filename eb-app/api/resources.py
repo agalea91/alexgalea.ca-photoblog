@@ -245,6 +245,10 @@ class Posts(Resource):
         else:
             del post["body"]
 
+        # Compute schema data
+        if self.include_post_content:
+            post["jsonld_schema"] = self._build_jsonld_schema_str(post)
+
         return post
 
     
@@ -287,6 +291,18 @@ class Posts(Resource):
 
         return _prev, _next
 
+    def _build_jsonld_schema_str(self, post):
+        schema = []
+        for div in post["body"]["divs"]:
+            if div["type"] == "photo":
+                schema.append({
+                    "@context": "https://schema.org/",
+                    "@type": "ImageObject",
+                    "contentUrl": div["file"],
+                    "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+                    "acquireLicensePage": f"{current_app.config['HOST']}/about"
+                })
+        return json.dumps(schema, indent=2)
 
 
 
