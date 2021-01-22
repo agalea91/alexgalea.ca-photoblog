@@ -66,8 +66,13 @@
         </div>
       </div>
     </div>
-    <div class="text-block" id="author-text" v-if=postContent.quote.attribution>
-      - <i>{{postContent.quote.attribution}}</i>
+    <div id="quote-attribution" v-if="postContent.quote.attribution">
+      - {{postContent.quote.attribution}}
+    </div>
+    <div id="quote-info-text">
+      <div><a :href="postContent.quote.source.url" target="_blank">{{postContent.quote.source.title}}</a></div>
+      <div v-if="postContent.quote.source.author">{{postContent.quote.source.author}}</div>
+      <div v-if="postContent.quote.source.year">{{postContent.quote.source.year}}</div>
     </div>
 
   </div>
@@ -172,6 +177,20 @@ h1 {
   display: inline-block;
   text-align: left;
 }
+#quote-attribution {
+  padding-bottom: 80px;
+}
+#quote-info-text {
+  width: 500px;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 2px;
+  border-width: 1.5px;
+  border-color: #000000;
+  border-style: groove;
+  display: inline-block;
+  text-align: center;
+}
 
 // Horizontal line effect
 h1 {
@@ -190,4 +209,5 @@ h1:before {
 h1:after {
   margin-left: 10px
 }
+
 </style>
