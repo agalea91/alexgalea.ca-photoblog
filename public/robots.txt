@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /api/
 
-Sitemap: http://ravenslightphoto.com/sitemap.xml
+Sitemap: https://ravenslightphoto.com/sitemap.xml
  
 #       `        `    ` `      `             `      
 #  `    ` `   `:oyhddmddhyo:``                      
