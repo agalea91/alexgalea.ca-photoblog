@@ -58,10 +58,6 @@
             {
                 "type": "photo",
                 "file": ""
-            },
-            {
-                "type": "text",
-                "text": "<br><br><i>- Author</i>"
             }
         ]
     }
