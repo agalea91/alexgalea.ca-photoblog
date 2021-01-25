@@ -30,9 +30,9 @@
         "desc_url": "https://en.wikipedia.org/wiki/Pacific_Northwest"
     },
     {
-        "Folklore": "Folklore",
-        "desc": "Myths and legends, usually involving gods and supernatural beings, with narratives that play a fundamental role in a society.",
-        "desc_url": "https://en.wikipedia.org/wiki/Folklore"
+        "name": "Mythology",
+        "desc": "Narratives that play a fundamental role in a society, such as foundational tales or origin myths. The main characters in myths are usually gods, demigods, or supernatural humans.",
+        "desc_url": "https://en.wikipedia.org/wiki/Myth"
     },
     {
         "name": "Joy",
