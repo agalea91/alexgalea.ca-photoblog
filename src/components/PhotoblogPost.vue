@@ -32,11 +32,17 @@
     <div style="padding-bottom:25px;"></div>
     <h1>{{postContent.title}}</h1>
     <div class="post-author">
-      {{ postContent.photo.date_taken }} | {{ postContent.photo.location }}
-      <!-- {{this.$route.params.year}}-{{this.$route.params.month}} -->
+      <div>
+        Photos by <b>{{ postContent.photo.photographer }}, {{ postContent.photo.date_taken }}</b>
+      </div>
+      <div v-if="postContent.quote.source.author">
+        Quote by <b>{{ postContent.quote.source.author }}</b>
+      </div>
     </div>
     <div class="post-desc">
       {{postContent.photo.desc}}
+      <br>
+      - {{ postContent.photo.location }}
     </div>
     <div class="photo-reel">
       <div class="photo-reel-block" v-for="(contentBlock, index) in postContent.body.divs" :key="index">
@@ -69,10 +75,13 @@
     <div id="quote-attribution" v-if="postContent.quote.attribution">
       - {{postContent.quote.attribution}}
     </div>
-    <div id="quote-info-text">
-      <div><a :href="postContent.quote.source.url" target="_blank">{{postContent.quote.source.title}}</a></div>
-      <div v-if="postContent.quote.source.author">{{postContent.quote.source.author}}</div>
-      <div v-if="postContent.quote.source.year">{{postContent.quote.source.year}}</div>
+    <div class="quote-info-text">
+      Quote from
+      <component :is="postContent.quote.source.url?'a':'span'" :href="postContent.quote.source.url || ''" target="_blank">
+        {{postContent.quote.source.title}}
+      </component>
+      <div v-if="postContent.quote.source.author">by <i>{{postContent.quote.source.author}}</i></div>
+      <div v-if="postContent.quote.source.year"><i>{{postContent.quote.source.year}}</i></div>
     </div>
 
   </div>
@@ -180,7 +189,7 @@ h1 {
 #quote-attribution {
   padding-bottom: 80px;
 }
-#quote-info-text {
+.quote-info-text {
   width: 500px;
   max-width: 80%;
   padding: 20px;
