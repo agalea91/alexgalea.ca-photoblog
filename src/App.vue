@@ -46,6 +46,7 @@ export default {
 // @import url('https://fonts.googleapis.com/css?family=Sree+Krushnadevaraya');
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display&family=Unna&family=Nothing+You+Could+Do&display=swap");
 // html { overflow-x: hidden }
+
 #app {
   // font-family: Sree Krushnadevaraya,serif;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
