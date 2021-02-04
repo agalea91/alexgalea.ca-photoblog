@@ -11,12 +11,17 @@ import './filters'
 Vue.config.productionTip = false
 
 new Vue({
-  created () {
-    // AOS.init({
-    //   disable: 'mobile'
-    // })
-  },
+  // el: '#app',
+  // created () {
+  //   AOS.init({
+  //     disable: 'mobile'
+  //   })
+  // },
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  mounted () {
+    // You'll need this for renderAfterDocumentEvent.
+    // document.dispatchEvent(new Event('page-rendered'))
+  }
 }).$mount('#app')

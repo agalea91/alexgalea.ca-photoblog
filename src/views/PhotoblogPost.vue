@@ -100,6 +100,9 @@ export default {
   },
   mounted () {
     this.fetchPosts()
+  },
+  serverPrefetch () {
+    return this.fetchPosts()
   }
 }
 </script>
