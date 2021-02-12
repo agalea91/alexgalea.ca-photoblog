@@ -37,6 +37,7 @@ yarn serve
 ### Eb app
 
 ![](docs/eb_app_example.png)
+![](docs/eb-config-env.png)
 
 Run flask server locally / test
 ```
