@@ -36,7 +36,7 @@ yarn serve
 
 ### Eb app
 
-![]('dist/Screen Shot 2021-02-12 at 3.00.55 AM.png')
+![](docs/eb_app_example.png)
 
 Run flask server locally / test
 ```
