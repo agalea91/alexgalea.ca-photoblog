@@ -36,9 +36,6 @@ yarn serve
 
 ### Eb app
 
-![](docs/eb_app_example.png)
-![](docs/eb-config-env.png)
-
 Run flask server locally / test
 ```
 ./sync_posts_eb_app.sh
@@ -46,52 +43,30 @@ cd eb-app
 python application.py
 ```
 
+## AWS
 
+### Eb app
 
-## Docker quick start
+Flask server backend.
 
-There are two apps which should both be run on the development machine:
+- Non load balanced (letsencrypt for https)
+- Smallest instance - t2.nano
+- WSGI path = "application.py"
 
-*Flask server*
-```
-docker-compose build server
-docker-compose run --service-ports server
-```
+![](docs/eb_app_example.png)
+![](docs/eb-config_env.png)
 
-*Vue dev server*
-```
-docker-compose build client
-docker-compose run --service-ports client
-```
+### Cloudfront / Route53
 
-## Running for development without Docker
+Website distribution and caching.
 
-### Quickstart
+- CNAMEs = "ravenslightphoto.com"
+- Default root object = "index.html"
+- Origin (s3 bucket) = "ravenslightphoto.com.s3.amazonaws.com"
 
-```
-# Start the server
-./run_server.sh
-
-# ** Open a new window
-
-# Start the client
-./run_client.sh
-
-# ** open http://localhost:8080/
-```
-
-### Vue
-```
-yarn install
-yarn serve
-```
-
-
-### Flask
-```
-pip install -r requirements.txt
-flask", "run", "--host", "0.0.0.0
-```
+![](docs/cloudfront_1.png)
+![](docs/cloudfront_2.png)
+![](docs/route53.png)
 
 ## Posts
 
@@ -141,4 +116,50 @@ posts
                 ├── 4-20201007-IMG_7455.jpg
                 ├── IMG_6308.jpg
                 └── post.json
+```
+
+
+## Docker quick start
+
+There are two apps which should both be run on the development machine:
+
+*Flask server*
+```
+docker-compose build server
+docker-compose run --service-ports server
+```
+
+*Vue dev server*
+```
+docker-compose build client
+docker-compose run --service-ports client
+```
+
+## Running for development without Docker
+
+### Quickstart
+
+```
+# Start the server
+./run_server.sh
+
+# ** Open a new window
+
+# Start the client
+./run_client.sh
+
+# ** open http://localhost:8080/
+```
+
+### Vue
+```
+yarn install
+yarn serve
+```
+
+
+### Flask
+```
+pip install -r requirements.txt
+flask", "run", "--host", "0.0.0.0
 ```
