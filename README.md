@@ -34,8 +34,10 @@ yarn install
 yarn serve
 ```
 
-
 ### Eb app
+
+![]('dist/Screen Shot 2021-02-12 at 3.00.55 AM.png')
+
 Run flask server locally / test
 ```
 ./sync_posts_eb_app.sh
