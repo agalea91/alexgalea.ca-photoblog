@@ -68,6 +68,42 @@ def _validate_post_fields(post):
     pass
 
 
+@api_rest.route('/categories')
+class Categories(Resource):
+    """ Get post categories in alphabetical order.
+    
+    Homepage
+    --------
+    Use this endpoint to pull post categories for onsite search.
+    """
+
+    def get(self):
+        """
+        GET /categories
+
+        Parameters
+        ----------
+        search_phrase : str
+            Text to match.
+
+        match_to : str
+            How to match with category. Default is 'all', meaning both
+            name and description.
+        """
+        self._parse_request_args(request.args)
+        if self.match_to not in ("all"):
+            raise NotImplementedError
+
+        # TODO: implement search logic
+
+
+    def _parse_request_args(self, args):
+        current_app.logger.debug("GET request args:")
+        current_app.logger.debug(json.dumps(args, indent=2))
+
+        self.search_phrase = args.get("search_phrase", None)
+        self.match_to = args.get("match_to", "all")
+
 
 @api_rest.route('/posts')
 class Posts(Resource):

@@ -27,12 +27,21 @@ $axios.interceptors.response.use(function (response) {
 })
 
 export default {
-
   fetchPosts (args) {
     var _args = Object.assign({}, args)
     // console.log('Calling fetchPosts with args:')
     // console.log(_args)
     return $axios.get(`posts`, { params: _args })
+      .then(response => {
+        // console.log(response)
+        return response.data
+      })
+  },
+  fetchCategories (args) {
+    var _args = Object.assign({}, args)
+    // console.log('Calling fetchCategories with args:')
+    // console.log(_args)
+    return $axios.get(`categories`, { params: _args })
       .then(response => {
         // console.log(response)
         return response.data

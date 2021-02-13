@@ -14,6 +14,7 @@
         - Alex
       </p>
     </div>
+    <SearchBox/>
     <ul>
       <li v-for="post in posts" :key="post.url_path">
         <div class="post-summary">
@@ -49,10 +50,14 @@
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox.vue'
 export default {
   name: 'HomePage',
   props: {
     posts: Array
+  },
+  components: {
+    SearchBox
   }
 }
 </script>
