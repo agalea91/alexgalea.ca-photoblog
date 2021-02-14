@@ -3,11 +3,12 @@ from datetime import datetime
 from flask import request, current_app
 from flask_restplus import Resource
 from glob import glob
+from copy import copy, deepcopy
 import os
 import re
 import json
+import pandas as pd
 from pathlib import Path
-from copy import copy
 from typing import List
 
 from api import api_rest
@@ -68,6 +69,19 @@ def _validate_post_fields(post):
     pass
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 @api_rest.route('/categories')
 class Categories(Resource):
     """ Get post categories in alphabetical order.
@@ -94,8 +108,13 @@ class Categories(Resource):
         if self.match_to not in ("all"):
             raise NotImplementedError
 
-        # TODO: implement search logic
-
+        category_index = self._load_cat_indices()
+        if self.search_phrase is None or self.search_phrase.strip() == "":
+            matching_cats = category_index
+        else:
+            matching_cats = self._lookup_categories(self.search_phrase, category_index)
+            matching_cats = self._add_surrogate_keys(matching_cats)
+        return {"categories": matching_cats}
 
     def _parse_request_args(self, args):
         current_app.logger.debug("GET request args:")
@@ -103,6 +122,70 @@ class Categories(Resource):
 
         self.search_phrase = args.get("search_phrase", None)
         self.match_to = args.get("match_to", "all")
+
+    @staticmethod
+    def _add_surrogate_keys(records):
+        _records = deepcopy(records)
+        for i, record in enumerate(_records):
+            record["key"] = i + 1
+        return _records
+
+    @staticmethod
+    def _lookup_categories(search_phrase, category_index):
+        # Clean up search phrase
+        _search_phrase = search_phrase.lower().strip()
+
+        # Split into words and return where ALL match
+        _search_phrase_words = [word.strip() for word in _search_phrase.split(" ") if word.strip()]
+
+        # Vectorized lookup for speed
+        df_cat = pd.DataFrame(category_index)
+        matches = []
+        for word in _search_phrase_words:
+
+            # Lookup matches
+            m_title_match = df_cat.name.str.lower().str.contains(_search_phrase, regex=False)
+            m_desc_match = df_cat.desc.str.lower().str.contains(_search_phrase, regex=False)
+
+            # Combine matches for each field (ANY must match -> OR logic)
+            m_match = m_title_match | m_desc_match
+            matches.append(m_match.copy())
+
+        # Combine matches for each word (ALL must match -> AND logic)
+        m_match = matches[0]
+        for m in matches[1:]:
+            m_match = m_match & m
+
+        matching_cats = json.loads(
+            df_cat[m_match]
+                .sort_values("name", ascending=True)
+                .to_json(orient="records")
+        )
+        return matching_cats
+
+    def _load_cat_indices(self):
+        cats = []
+        cat_index_fp = os.path.join(
+            current_app.config["IMG_DIR"],
+            "categories"
+        )
+        with open(os.path.join(cat_index_fp, "photo.json"), "r") as f:
+            photo_cats = json.load(f)
+            for cat in photo_cats:
+                cat["type"] = "photo"
+        with open(os.path.join(cat_index_fp, "quote.json"), "r") as f:
+            quote_cats = json.load(f)
+            for cat in quote_cats:
+                cat["type"] = "quote"
+        
+        cats = photo_cats + quote_cats
+        return cats
+
+
+
+
+
+
 
 
 @api_rest.route('/posts')
@@ -155,7 +238,7 @@ class Posts(Resource):
         if not posts:
             current_app.logger.warning("No posts found!")
 
-        return {'posts': posts}
+        return {"posts": posts}
 
     def _parse_request_args(self, args):
         current_app.logger.debug("GET request args:")

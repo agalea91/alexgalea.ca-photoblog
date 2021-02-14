@@ -1,27 +1,28 @@
 <template>
   <div class="row column header" id="search-box-container">
-    <h1 class="cover-heading">Live Search Test</h1>
     <div class="medium-6 medium-offset-3 ctrl">
       <form class="searchForm" v-on:submit.prevent="submitSearch">
-      <input type="text" v-model="searchQuery" placeholder="Type here" @keyup="submitSearch">
+      <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ..." @keyup="submitSearch">
       <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery">+</span>
       </form>
     </div>
     <div class="searchResult" v-show="isResult">
       <transition-group name="expand" tag="div">
-      <a :href="'http://en.wikipedia.org/?curid='+ elem.pageid" v-for="elem in catResults" v-bind:key="elem.pageid">
-      <div class="medium-8 medium-offset-2 columns card">
-        <h1 class="text-headline">{{ elem.title }}</h1>
-        <p class="text-body-1">{{ elem.extract }}</p>
-      </div>
-      </a>
+        <a :href="'http://en.wikipedia.org/?curid='+ category.key"
+          v-for="category in catResults"
+          v-bind:key="category.key"
+        >
+          <div class="medium-8 medium-offset-2 columns card">
+            <h1 class="text-headline">{{ category.name }}</h1>
+            <p class="text-body-1">{{ category.desc }}</p>
+          </div>
+        </a>
       </transition-group>
     </div>
   </div>
 </template>
 
 <script>
-import backend from '../backend'
 import $backend from '../backend'
 export default {
   name: 'SearchBox',
@@ -44,11 +45,13 @@ export default {
       })
         .then(responseData => {
           try {
-            responseData.cats.forEach(cat => {
+            console.log(responseData)
+            responseData.categories.forEach(cat => {
               this.catResults.push(cat)
             })
+            this.isResult = true
           } catch (err) {
-            console.log(error)
+            console.log(err)
           }
         }).catch(error => {
           this.error = error.message
@@ -70,13 +73,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+#search-box-container {
+  width: 90%;
+  display: inline-block;
+}
+a {
+  text-decoration: none;
+}
 .card {
   text-align: left;
   border-radius: 0;
   background: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13), 0 1px 5px 0 rgba(0, 0, 0, 0.08);
-  padding: 0 1.6rem;
-  margin-bottom: 0.8rem;
+  padding: 1rem;
   transition: .4s ease-out
 }
 .card:hover {
@@ -86,10 +95,6 @@ export default {
 }
 .ctrl {
   margin-bottom: 1.6rem;
-}
-h1,
-h2 {
-  font-family: 'Source Sans Pro', sans-serif;
 }
 .header {
   color: #555;
@@ -117,18 +122,20 @@ h2 {
   margin-bottom: 2.6rem;
   position: relative;
 }
-.text-body-1 {
-  font-size: 15px;
-  line-height: 20px;
-  padding-top: 12px;
-  margin-bottom: 1.4rem;
-  letter-spacing: 0;
-}
 .text-headline {
   font-size: 24px;
-  line-height: 32px;
-  padding-top: 16px;
-  margin-bottom: 12px;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 5px;
+  letter-spacing: 0;
+}
+.text-body-1 {
+  font-size: 15px;
+  font-weight: normal;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   letter-spacing: 0;
 }
 /* vuejs transition */

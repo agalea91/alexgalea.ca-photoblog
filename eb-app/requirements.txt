@@ -12,3 +12,4 @@ protobuf==3.14.0
 ipaddr==2.2.0
 ordereddict==1.1
 wincertstore==0.2
+pandas

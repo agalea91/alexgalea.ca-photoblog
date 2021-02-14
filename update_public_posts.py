@@ -14,8 +14,8 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-POST_PATH = "posts/img/*/*/*"
-PUB_PATH = "public"
+POST_PATH = pathlib.Path("posts")
+PUB_PATH = pathlib.Path("public")
 IGNORE_POSTS_STARTSWITH = "_"
 WATERMARK_FONT_SIZE = 25
 MAX_PX_SIZE = 1280
@@ -30,12 +30,27 @@ def main():
     else:
         print("Refreshing all posts")
 
-    pub_img_fp = pathlib.Path(PUB_PATH, "img")
+    pub_img_fp = PUB_PATH / "img"
     ans = input(f"WARNING: about to delete {str(pub_img_fp)} folder. Press enter to proceed.")
     if ans.strip() == "":
-        shutil.rmtree(pub_img_fp)
+        try:
+            shutil.rmtree(pub_img_fp)
+        except FileNotFoundError:
+           pass
     else:
         sys.exit("User exit")
+
+    post_cat_img_fp = POST_PATH / "img" / "categories"
+    pub_cat_img_fp = PUB_PATH / "img" / "categories"
+    pub_cat_img_fp.mkdir(exist_ok=True, parents=True)
+    print("Copying posts/img/categories/photo.json")
+    src = post_cat_img_fp / "photo.json"
+    dest = pub_cat_img_fp / "photo.json"
+    shutil.copyfile(src, dest)
+    print("Copying posts/img/categories/quote.json")
+    src = post_cat_img_fp / "quote.json"
+    dest = pub_cat_img_fp / "quote.json"
+    shutil.copyfile(src, dest)
 
     post_fps = read_posts()
     for fp in post_fps:
@@ -53,28 +68,28 @@ def main():
             print(f"Failed to read images in post: {fp}")
             print(traceback.print_exc())
             image_files = []
-            
+
         pub_fp = PUB_PATH / (pathlib.Path(*fp.parts[1:]))
-            
+
         post_fp = (fp / "post.json")
         pub_post_fp = (pub_fp / "post.json")
         print(f"{str(post_fp)} -> {str(pub_post_fp)}")
         pathlib.Path(*pub_post_fp.parts[:-1]).mkdir(exist_ok=True, parents=True)
-        shutil.copyfile(post_fp, pub_post_fp)    
+        shutil.copyfile(post_fp, pub_post_fp)
 
         for image in image_files:
             image_fp = (fp / image["file"])
             pub_image_fp = (pub_fp / image["file"])
             print(image_fp)
-            
+
             image_obj = load_image(image_fp)
             image_obj = resize_pixels(image_obj, MAX_PX_SIZE)
             image_obj = add_watermark(image_obj, date=image["date"])
-            
+
             print(f"{str(image_fp)} -> {str(pub_image_fp)}")
             write_image(image_obj, pub_image_fp)
-            
-    
+
+
 
 def parse_args():
     import argparse
@@ -138,10 +153,9 @@ def resize_pixels(image_obj, max_px_size):
         wsize = int(float(width_0) * float(hpercent))
         img = image_obj.resize((wsize, max_px_size), Image.ANTIALIAS)
         return img
-            
 
 def read_posts():
-    post_folders = glob.glob(POST_PATH, recursive=True)
+    post_folders = glob.glob(str(POST_PATH / "img" / "*" / "*" / "*"), recursive=True)
     post_folders = [pathlib.Path(folder) for folder in post_folders]
     return post_folders
 

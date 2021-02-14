@@ -14,6 +14,7 @@
         - Alex
       </p>
     </div>
+    <div></div>
     <SearchBox/>
     <ul>
       <li v-for="post in posts" :key="post.url_path">

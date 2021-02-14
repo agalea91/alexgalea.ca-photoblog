@@ -3,3 +3,4 @@ flask
 flask-restplus
 gunicorn==19.7.1
 python-dotenv
+pandas
