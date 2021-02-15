@@ -1,9 +1,15 @@
 <template>
 
   <div id="app">
-    <h1>Raven's Light</h1>
-    <div id="h1-lower" class="header-homepage-link">A Photo Journal</div>
-    <div class="headline-below-h1">
+    <div v-if="tag">
+      <h1>{{tag}}</h1>
+      <div id="h1-lower" class="header-homepage-link">Raven's Light | A Photo Journal</div>
+    </div>
+    <div v-else>
+      <h1>Raven's Light</h1>
+      <div id="h1-lower" class="header-homepage-link">A Photo Journal</div>
+    </div>
+    <div class="headline-below-h1" v-show="isHome">
       <p class="headline-main-text">
         In Native American legends, Raven is said to have brought light to the world.
         <br>
@@ -55,7 +61,9 @@ import SearchBox from '@/components/SearchBox.vue'
 export default {
   name: 'HomePage',
   props: {
-    posts: Array
+    posts: Array,
+    isHome: Boolean,
+    tag: String
   },
   components: {
     SearchBox

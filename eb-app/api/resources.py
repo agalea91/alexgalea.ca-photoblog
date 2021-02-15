@@ -108,7 +108,8 @@ class Categories(Resource):
         ):
             matching_cats = category_index
         else:
-            matching_cats = self._lookup_categories(self.search_phrase, category_index)
+            _search_phrase = self._clean_search_phrase(self.search_phrase)
+            matching_cats = self._lookup_categories(_search_phrase, category_index)
             matching_cats = self._add_surrogate_keys(matching_cats)
 
         payload = {"categories": matching_cats}
@@ -129,15 +130,13 @@ class Categories(Resource):
 
     @staticmethod
     def _lookup_categories(search_phrase, category_index):
-        # Clean up search phrase
-        _search_phrase = search_phrase.lower().strip()
 
         # Vectorized lookup for speed
         df_cat = pd.DataFrame(category_index)
 
         # Lookup matches
-        m_title_match = df_cat.name.str.lower().str.contains(_search_phrase, regex=False)
-        m_desc_match = df_cat.desc.str.lower().str.contains(_search_phrase, regex=False)
+        m_title_match = df_cat.name.str.lower().str.contains(search_phrase, regex=False)
+        m_desc_match = df_cat.desc.str.lower().str.contains(search_phrase, regex=False)
 
         # Combine matches for each field (ANY must match -> OR logic)
         m_match = m_title_match | m_desc_match
@@ -148,6 +147,17 @@ class Categories(Resource):
                 .to_json(orient="records")
         )
         return matching_cats
+
+
+    @staticmethod
+    def _clean_search_phrase(search_phrase):
+        # Make lower
+        _search_phrase = search_phrase.lower().strip()
+        # Strip trailing s
+        if _search_phrase.endswith("s"):
+            _search_phrase = _search_phrase[:-1]
+        return _search_phrase
+
 
     def _load_cat_indices(self):
         cats = []
