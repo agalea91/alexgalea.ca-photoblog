@@ -2,7 +2,7 @@
 
   <div id="app">
     <div v-if="tag">
-      <h1>{{tag}}</h1>
+      <h1>{{tag.replace('-', ' ')}}</h1>
       <div id="h1-lower" class="header-homepage-link">Raven's Light | A Photo Journal</div>
     </div>
     <div v-else>
