@@ -40,6 +40,7 @@ export default {
   methods: {
     fetchPosts (args) {
       // console.log('Fetching posts from vue frontend')
+      this.posts = []
       $backend.fetchPosts(args)
         .then(responseData => {
           try {
@@ -63,10 +64,18 @@ export default {
     //     })
     // }
   },
+  watch: {
+    '$route': function (to, from) {
+      this.fetchPosts({
+        include_post_content: 'false',
+        tag: this.$route.params.tag
+      })
+    }
+  },
   mounted () {
     this.fetchPosts({
       include_post_content: 'false',
-      year: this.$route.params.year
+      tag: this.$route.params.tag
     })
   }
   // beforeRouteUpdate (to, from, next) {

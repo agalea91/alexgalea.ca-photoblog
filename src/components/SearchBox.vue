@@ -2,21 +2,30 @@
   <div class="row column header" id="search-box-container">
     <div class="medium-6 medium-offset-3 ctrl">
       <form class="searchForm" v-on:submit.prevent="submitSearch">
-      <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ..." @keyup="submitSearch">
-      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery">+</span>
+      <!-- <input type="text" v-model="searchQuery" placeholder="all, sunset, clouds, mythology, ..." @keyup="submitSearch"> -->
+      <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ...">
+      <span class="removeInput" @click="removeSearchQuery">+</span>
       </form>
     </div>
     <div class="searchResult" v-show="isResult">
       <transition-group name="expand" tag="div">
-        <a :href="'http://en.wikipedia.org/?curid='+ category.key"
+        <router-link
+          :to="{ name: 'collection', params: {
+            tag: category.name.replace(' ', '-')
+          }}"
           v-for="category in catResults"
           v-bind:key="category.key"
         >
+        <!-- <a :href="'http://en.wikipedia.org/?curid='"
+          v-for="category in catResults"
+          v-bind:key="category.key"
+        > -->
           <div class="medium-8 medium-offset-2 columns card">
-            <h1 class="text-headline">{{ category.name }}</h1>
+            <h2 class="text-headline">{{ category.name }}</h2>
             <p class="text-body-1">{{ category.desc }}</p>
           </div>
-        </a>
+        </router-link>
+        <!-- </a> -->
       </transition-group>
     </div>
   </div>
@@ -45,7 +54,7 @@ export default {
       })
         .then(responseData => {
           try {
-            console.log(responseData)
+            // console.log(responseData)
             responseData.categories.forEach(cat => {
               this.catResults.push(cat)
             })
@@ -66,6 +75,11 @@ export default {
     //   })
       // this.articleObj = [{'pageid': 1, 'title': 'Mr.', 'extract': 'Robot'}, {'pageid': 2,'title': 'Death', 'extract': 'Note'}]
       // this.isResult = true
+    }
+  },
+  watch: {
+    '$route': function (to, from) {
+      this.removeSearchQuery()
     }
   }
 }
@@ -123,7 +137,7 @@ a {
   position: relative;
 }
 .text-headline {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin: 0;
   padding-top: 0;

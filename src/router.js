@@ -19,7 +19,7 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/collection/:year',
+      path: '/collection/:tag',
       name: 'collection',
       component: Home
     },

@@ -63,7 +63,6 @@ def _get_url_path(post_file) -> str:
     slug = Path(*Path(path).parts[1:-1])
     return f"/album/{slug}"
 
-
 def _validate_post_fields(post):
     # TODO: implement verification
     pass
@@ -99,29 +98,27 @@ class Categories(Resource):
         ----------
         search_phrase : str
             Text to match.
-
-        match_to : str
-            How to match with category. Default is 'all', meaning both
-            name and description.
         """
         self._parse_request_args(request.args)
-        if self.match_to not in ("all"):
-            raise NotImplementedError
 
         category_index = self._load_cat_indices()
-        if self.search_phrase is None or self.search_phrase.strip() == "":
+        if (
+            self.search_phrase is None
+            or self.search_phrase.strip() == ""
+        ):
             matching_cats = category_index
         else:
             matching_cats = self._lookup_categories(self.search_phrase, category_index)
             matching_cats = self._add_surrogate_keys(matching_cats)
-        return {"categories": matching_cats}
+
+        payload = {"categories": matching_cats}
+        return payload
 
     def _parse_request_args(self, args):
         current_app.logger.debug("GET request args:")
         current_app.logger.debug(json.dumps(args, indent=2))
 
         self.search_phrase = args.get("search_phrase", None)
-        self.match_to = args.get("match_to", "all")
 
     @staticmethod
     def _add_surrogate_keys(records):
@@ -135,26 +132,15 @@ class Categories(Resource):
         # Clean up search phrase
         _search_phrase = search_phrase.lower().strip()
 
-        # Split into words and return where ALL match
-        _search_phrase_words = [word.strip() for word in _search_phrase.split(" ") if word.strip()]
-
         # Vectorized lookup for speed
         df_cat = pd.DataFrame(category_index)
-        matches = []
-        for word in _search_phrase_words:
 
-            # Lookup matches
-            m_title_match = df_cat.name.str.lower().str.contains(_search_phrase, regex=False)
-            m_desc_match = df_cat.desc.str.lower().str.contains(_search_phrase, regex=False)
+        # Lookup matches
+        m_title_match = df_cat.name.str.lower().str.contains(_search_phrase, regex=False)
+        m_desc_match = df_cat.desc.str.lower().str.contains(_search_phrase, regex=False)
 
-            # Combine matches for each field (ANY must match -> OR logic)
-            m_match = m_title_match | m_desc_match
-            matches.append(m_match.copy())
-
-        # Combine matches for each word (ALL must match -> AND logic)
-        m_match = matches[0]
-        for m in matches[1:]:
-            m_match = m_match & m
+        # Combine matches for each field (ANY must match -> OR logic)
+        m_match = m_title_match | m_desc_match
 
         matching_cats = json.loads(
             df_cat[m_match]
@@ -177,9 +163,20 @@ class Categories(Resource):
             quote_cats = json.load(f)
             for cat in quote_cats:
                 cat["type"] = "quote"
-        
+
         cats = photo_cats + quote_cats
-        return cats
+
+        # Dedupe
+        cat_names = []
+        dedupe_cats = []
+        for cat in cats:
+            name = cat["name"]
+            if name in cat_names:
+                continue
+            cat_names.append(name)
+            dedupe_cats.append(cat)
+
+        return dedupe_cats
 
 
 
@@ -219,8 +216,13 @@ class Posts(Resource):
         file : str
             Name of file (optional).
 
+        tag : str
+            Tag to match (optional).
+
+        category_type
+
         limit : int
-             Number of posts to return. Default is 10.
+            Number of posts to return. Default is 10.
 
         include_post_content : str
             If set to "true", will return post content
@@ -228,17 +230,21 @@ class Posts(Resource):
         """
         self._parse_request_args(request.args)
         post_files = self._map_fs_post_files(apply_filter=True)
+        post_files = self._apply_post_files_limit(post_files)
         posts = []
         for post_file in post_files:
-            resp_data = self._get_response_data(post_file, get_neighbours=True)
+            resp_data = self._get_post_data(post_file, get_neighbours=True)
             posts.append(copy(resp_data))
+
+        posts = self._apply_posts_tag_filter(posts)
 
         current_app.logger.debug("GET request posts being returned:")
         current_app.logger.debug(json.dumps(posts, indent=2))
         if not posts:
             current_app.logger.warning("No posts found!")
 
-        return {"posts": posts}
+        payload = {"posts": posts}
+        return payload
 
     def _parse_request_args(self, args):
         current_app.logger.debug("GET request args:")
@@ -247,6 +253,7 @@ class Posts(Resource):
         self.year = args.get("year", None)
         self.month = args.get("month", None)
         self.foldername = args.get("foldername", None)
+        self.tag = args.get("tag", None)
         self.limit = int(args.get("limit", "10"))
         self.include_post_content = (
             True if (args.get("include_post_content", "")).lower() == "true"
@@ -262,12 +269,9 @@ class Posts(Resource):
                 self.foldername or "*",
             ]
             recur = False
-            limit = self.limit
-
         else:
             path_args = ["**"]
             recur = True
-            limit = None
 
         post_files_glob = (
             os.path.join(
@@ -281,39 +285,35 @@ class Posts(Resource):
             glob(post_files_glob, recursive=recur),
             reverse=True
         )
-        # Apply limit param
-        post_files = post_files[:limit]
-
-        # Apply others
-        # post_files = self.apply_ignore_filters(post_files)
-
-        current_app.logger.debug(post_files)
-
         return post_files
 
+    def _apply_post_files_limit(self, post_files):
+        if self.tag is not None:
+            return post_files
+        if self.limit is None:
+            return post_files
+        else:
+            return post_files[:self.limit]
 
-    # def apply_ignore_filters(self, post_files):
-    #     _post_files = []
-    #     for post in post_files:
-    #         post_name = _get_post_name(post)
-    #         if current_app.config["IMG_IGNORE_UNDERSCORE_NAMES"]:
-    #             if post_name.startswith("_"):
-    #                 current_app.logger.debug(f"Ignoring post: {post_name}")
-    #                 continue
-    #         if current_app.config["IMG_IGNORE"]:
-    #             parent_loop_continue = False
-    #             for pattern in current_app.config["IMG_IGNORE"]:
-    #                 if pattern in post:
-    #                     parent_loop_continue = True
-    #             if parent_loop_continue:
-    #                 current_app.logger.debug(f"Ignoring post: {post_name}")
-    #                 continue
-    #         _post_files.append(post)
-    #     return _post_files
+    def _apply_posts_tag_filter(self, posts):
+        if self.tag is None:
+            return posts
+        tag_posts = []
+        for post in posts:
+            if self.tag in self._get_post_tag_slugs(post, "quote"):
+                tag_posts.append(post)
+            elif self.tag in self._get_post_tag_slugs(post, "photo"):
+                tag_posts.append(post)
+        return tag_posts
 
+    @staticmethod
+    def _get_post_tag_slugs(post, tag_type):
+        return [
+            tag.replace(" ", "-") for tag in
+            post.get(tag_type, {}).get("tags", [])
+        ]
 
-
-    def _get_response_data(self, post_file, get_neighbours=False) -> dict:
+    def _get_post_data(self, post_file, get_neighbours=False) -> dict:
         """ Parse post data and return dict to append to response."""
 
         current_app.logger.debug(f"Opening post file: {post_file}")
@@ -339,14 +339,14 @@ class Posts(Resource):
             # post["prev_date"] = _get_post_date(_prev_file)
             # post["next_date"] = _get_post_date(_next_file)
 
-            post["prev_title"] = self._get_response_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
+            post["prev_title"] = self._get_post_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
             post["prev_url_path"] = _get_url_path(_prev_file) if _prev_file else ""
             post["prev_year"] = _get_post_year(_prev_file) if _prev_file else ""
             post["prev_month"] = _get_post_month(_prev_file) if _prev_file else ""
             post["prev_post_name"] = _get_post_name(_prev_file) if _prev_file else ""
 
             post["next_url_path"] = _get_url_path(_next_file) if _next_file else ""
-            post["next_title"] = self._get_response_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
+            post["next_title"] = self._get_post_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
             post["next_year"] = _get_post_year(_next_file) if _next_file else ""
             post["next_month"] = _get_post_month(_next_file) if _next_file else ""
             post["next_post_name"] = _get_post_name(_next_file) if _next_file else ""

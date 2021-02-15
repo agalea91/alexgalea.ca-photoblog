@@ -4,12 +4,10 @@
     <div id="nav">
       <div v-if="this.$route.name === 'home'">
         <router-link to="/">Latest</router-link>
-        | <router-link to="/collection/2020">2020</router-link>
         | <router-link to="/about">About</router-link>
       </div>
       <div v-if="this.$route.name === 'collection'">
         <router-link to="/">Latest</router-link>
-        | <router-link to="/collection/2020">2020</router-link>
         | <router-link to="/about">About</router-link>
       </div>
       <div v-if="this.$route.name === 'about'">
