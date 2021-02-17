@@ -5,8 +5,14 @@
       <div v-if="this.$route.name === 'home'">
         <router-link to="/">Home</router-link>
         | <router-link to="/about">About</router-link>
+        | <router-link to="/collections">Collections</router-link>
       </div>
       <div v-if="this.$route.name === 'collection'">
+        <router-link to="/">Home</router-link>
+        | <router-link to="/about">About</router-link>
+        | <router-link to="/collections">Collections</router-link>
+      </div>
+      <div v-if="this.$route.name === 'collections'">
         <router-link to="/">Home</router-link>
         | <router-link to="/about">About</router-link>
       </div>

@@ -106,11 +106,11 @@ class Categories(Resource):
             self.search_phrase is None
             or self.search_phrase.strip() == ""
         ):
-            matching_cats = category_index
+            matching_cats = self._lookup_categories("", category_index, nofilter=True)
         else:
             _search_phrase = self._clean_search_phrase(self.search_phrase)
             matching_cats = self._lookup_categories(_search_phrase, category_index)
-            matching_cats = self._add_surrogate_keys(matching_cats)
+        matching_cats = self._add_surrogate_keys(matching_cats)
 
         payload = {"categories": matching_cats}
         return payload
@@ -129,7 +129,7 @@ class Categories(Resource):
         return _records
 
     @staticmethod
-    def _lookup_categories(search_phrase, category_index):
+    def _lookup_categories(search_phrase, category_index, nofilter=False):
 
         # Vectorized lookup for speed
         df_cat = pd.DataFrame(category_index)

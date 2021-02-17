@@ -4,6 +4,7 @@ import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
 
 import Home from './views/Home.vue'
+import Collections from './views/Collections.vue'
 import About from './views/About.vue'
 import CookiesPolicy from './views/CookiesPolicy.vue'
 import PhotoblogPost from './views/PhotoblogPost.vue'
@@ -17,6 +18,11 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/collections',
+      name: 'collections',
+      component: Collections
     },
     {
       path: '/collection/:tag',

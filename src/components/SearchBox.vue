@@ -2,9 +2,9 @@
   <div class="row column header" id="search-box-container">
     <div class="medium-6 medium-offset-3 ctrl">
       <form class="searchForm" v-on:submit.prevent="submitSearch">
-      <!-- <input type="text" v-model="searchQuery" placeholder="all, sunset, clouds, mythology, ..." @keyup="submitSearch"> -->
-      <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ...">
-      <span class="removeInput" @click="removeSearchQuery">+</span>
+        <!-- <input type="text" v-model="searchQuery" placeholder="all, sunset, clouds, mythology, ..." @keyup="submitSearch"> -->
+        <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ...">
+        <span class="removeInput" @click="removeSearchQuery">+</span>
       </form>
     </div>
     <div class="searchResult" v-show="isResult">
@@ -35,6 +35,9 @@
 import $backend from '../backend'
 export default {
   name: 'SearchBox',
+  props: {
+    defaultOpen: Boolean
+  },
   data () {
     return {
       catResults: null,
@@ -80,6 +83,16 @@ export default {
   watch: {
     '$route': function (to, from) {
       this.removeSearchQuery()
+      if (this.$props.defaultOpen) {
+        this.searchQuery = ''
+        this.submitSearch()
+      }
+    }
+  },
+  mounted () {
+    if (this.$props.defaultOpen) {
+      this.searchQuery = ''
+      this.submitSearch()
     }
   }
 }
