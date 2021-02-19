@@ -21,6 +21,10 @@ There are three main things going on here:
 ### How to update the site
 
 ```
+# Update `public` folder with `posts`
+# (if adding to or editing `posts`)
+update_public_posts.py
+
 # Sync posts to flask app
 ./eb_sync_posts.sh
 
@@ -28,12 +32,17 @@ There are three main things going on here:
 cd ../../scrapy-crawlers/js_crawl
 source activate selenium-py36
 scrapy crawl js_local_8080 -O output.json
+cd -
 
 # Copy routes to config
 python update_vue_config_prerender_routes.py
 
 # Build and upload vue app to s3
 python update_client.sh
+
+# Deploy updated server
+# (if API still in use)
+./update_server.sh
 ```
 
 ### Vue app
