@@ -38,7 +38,7 @@ cd -
 python update_vue_config_prerender_routes.py
 
 # Build and upload vue app to s3
-python update_client.sh
+./update_client.sh
 
 # Deploy updated server
 # (if API still in use)
