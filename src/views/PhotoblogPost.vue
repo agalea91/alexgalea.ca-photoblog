@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <PhotoblogPost
-      testing="false"
       v-bind:postContent="postContent"
     />
   </div>
@@ -39,15 +38,15 @@ export default {
         t: 'application/ld+json',
         i: this.postContent.jsonld_schema
       }]
+    },
+    meta: function () {
+      return [
+        {
+          name: 'description',
+          content: this.postContent.photo.desc.replace(/\.?$/, '') + '. High quality photos for download.'
+        }
+      ]
     }
-    // meta: function () {
-    //   return [
-    //     {
-    //       name: 'description',
-    //       content: this.postContent.photo.desc.replace(/\.$/, '') + '. High quality photos for download.'
-    //     }
-    //   ]
-    // }
   },
   methods: {
     fetchPosts: function () {

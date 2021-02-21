@@ -30,15 +30,23 @@ export default {
     }
   },
   head: {
-    title: {
-      inner: 'Home'
-    },
-    meta: [
-      {
-        name: 'description',
-        content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains."
+    title: function () {
+      return {
+        inner: this.isHome ? 'Home' : this.tag
       }
-    ]
+    },
+    meta: function () {
+      return [
+        {
+          name: 'description',
+          content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains."
+        },
+        {
+          property: 'og:image',
+          content: 'https://ravenslightphoto.com/ravens_light_homepage_og.jpg'
+        }
+      ]
+    }
   },
   methods: {
     checkIfHome () {
@@ -78,6 +86,7 @@ export default {
         tag: this.$route.params.tag
       })
       this.tag = this.$route.params.tag ? this.$route.params.tag : ''
+      this.$emit('updateHead')
     }
   },
   mounted () {
@@ -87,6 +96,7 @@ export default {
       tag: this.$route.params.tag
     })
     this.tag = this.$route.params.tag ? this.$route.params.tag : ''
+    this.$emit('updateHead')
   }
   // beforeRouteUpdate (to, from, next) {
   //   this.fetchPosts({

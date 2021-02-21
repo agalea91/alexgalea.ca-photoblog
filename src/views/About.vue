@@ -28,7 +28,7 @@ export default {
     meta: [
       {
         name: 'description',
-        content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains. Album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
+        content: "About Raven's Light. Album narratives are sourced from history, stories, podcasts, books, or anything that I'm inspired by."
       }
     ]
   },
