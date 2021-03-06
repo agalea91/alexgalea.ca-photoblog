@@ -38,10 +38,12 @@ export default {
     meta: function () {
       return [
         {
+          id: 'description',
           name: 'description',
           content: "Landscapes from the Pacific Northwest and Canada's Rocky Mountains."
         },
         {
+          id: 'og-image',
           property: 'og:image',
           content: 'https://ravenslightphoto.com/ravens_light_homepage_og.jpg'
         }

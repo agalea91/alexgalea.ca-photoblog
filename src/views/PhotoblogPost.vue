@@ -35,6 +35,7 @@ export default {
     },
     script: function () {
       return [{
+        id: 'jsonld-schema-1',
         t: 'application/ld+json',
         i: this.postContent.jsonld_schema
       }]
@@ -42,6 +43,7 @@ export default {
     meta: function () {
       return [
         {
+          id: 'description',
           name: 'description',
           content: this.postContent.photo.desc.replace(/\.?$/, '') + '. High quality photos for download.'
         }
