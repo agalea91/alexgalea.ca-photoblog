@@ -1,9 +1,9 @@
 <template>
   <div class="row column header" id="search-box-container">
     <div class="medium-6 medium-offset-3 ctrl">
-      <form class="searchForm" v-on:submit.prevent="submitSearch">
-        <!-- <input type="text" v-model="searchQuery" placeholder="all, sunset, clouds, mythology, ..." @keyup="submitSearch"> -->
-        <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ...">
+      <form class="searchForm" v-on:submit.prevent="">
+      <!-- <form class="searchForm" v-on:submit.prevent="delaySubmitSearch"> -->
+        <input type="text" v-model="searchQuery" placeholder="sunset, clouds, mythology, ..." @keyup="delaySubmitSearch">
         <span class="removeInput" @click="removeSearchQuery">+</span>
       </form>
     </div>
@@ -16,16 +16,11 @@
           v-for="category in catResults"
           v-bind:key="category.key"
         >
-        <!-- <a :href="'http://en.wikipedia.org/?curid='"
-          v-for="category in catResults"
-          v-bind:key="category.key"
-        > -->
           <div class="medium-8 medium-offset-2 columns card">
             <h2 class="text-headline">{{ category.name }}</h2>
             <p class="text-body-1">{{ category.desc }}</p>
           </div>
         </router-link>
-        <!-- </a> -->
       </transition-group>
     </div>
   </div>
@@ -42,7 +37,8 @@ export default {
     return {
       catResults: null,
       isResult: false,
-      searchQuery: ''
+      searchQuery: '',
+      searchTimeoutId: ''
     }
   },
   methods: {
@@ -50,14 +46,38 @@ export default {
       this.searchQuery = ''
       this.isResult = false
     },
+    delaySubmitSearch () {
+      let delay = 1000
+      clearTimeout(this.searchTimeoutId)
+      this.searchTimeoutId = setTimeout(() => {
+        // Identical to submitSearch function
+        this.catResults = []
+        $backend.fetchCategories({
+          search_phrase: this.searchQuery
+        })
+          .then(responseData => {
+            try {
+              responseData.categories.forEach(cat => {
+                this.catResults.push(cat)
+              })
+              this.isResult = true
+            } catch (err) {
+              console.log(err)
+            }
+          }).catch(error => {
+            this.error = error.message
+            console.log(error)
+          })
+      }, delay)
+    },
     submitSearch () {
+      // Identical to delaySubmitSearch setTimout function
       this.catResults = []
       $backend.fetchCategories({
         search_phrase: this.searchQuery
       })
         .then(responseData => {
           try {
-            // console.log(responseData)
             responseData.categories.forEach(cat => {
               this.catResults.push(cat)
             })
@@ -69,15 +89,6 @@ export default {
           this.error = error.message
           console.log(error)
         })
-      // var reqURL = 'https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrnamespace=0&exsentences=1&exintro&explaintext&exlimit=max&prop=extracts&gsrlimit=10&gsrsearch=' + this.searchQuery + '&format=json'
-    //   this.$http.jsonp(reqURL).then(function (response) {
-    //     this.articleObj = response.data.query.pages
-    //     this.isResult = true
-    //   }, function (response) {
-    //     console.log(response)
-    //   })
-      // this.articleObj = [{'pageid': 1, 'title': 'Mr.', 'extract': 'Robot'}, {'pageid': 2,'title': 'Death', 'extract': 'Note'}]
-      // this.isResult = true
     }
   },
   watch: {
