@@ -26,6 +26,9 @@
         <a href="https://www.shutterstock.com/license-comparison">Shutterstock</a>.
       </p>
     </div>
+    <div id="buyme-coffee">
+      <a href="https://www.buymeacoffee.com/alexgalea"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=alexgalea&button_colour=000000&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
+    </div>
   </div>
 </template>
 
