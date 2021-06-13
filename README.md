@@ -2,13 +2,43 @@
 
 ## Project at a glance
 
+Vue frontend with Flask API to serve images, do search, etc..
+
+## Developing
+
+To develop just launch the Flask API and Vue app locally:
+```
+./run_client.sh
+./run_server.sh
+```
+
+## Production
+
+Building for production is complicated.
+
+ 1. Crawl local dev site.   
+
+    In order to create the sitemap and automatically fetch a list of all pages on the site, I first launch the site locally and then do a JS URL discovery crawl.
+
+ 2. Build the Vue app
+
+    Build the site for production. At this point the site has prerendered HTML with the local API host in the strings. Run a script to fix that.
+
+3. Upload new site
+
+    Run an update script that uses the AWS CLI. The dist folder is synchonized with an s3 bucket. That sits behind CloudFront, and so I create an invalidation to refresh the site as well.
+
+
+
+ ## Folders
+
 There are three main things going on here:
-| Folder | Description |
-| - | - |
-| `src` | Vue web app. My photoblog frontend application.
-| `eb-app` |  Newer version of flask server. Backend server providing data to the web app. ~~To be hosted on Elastic Beanstalk.~~ Only used locally for building static site.
+| Folder | Description | Start Dev Cmd | Update Prod Cmd
+| - | - | - | - |
+| `src` | Vue web app. My photoblog frontend application. | `run_client.sh` | `update_client.sh`
+| `eb-app` |  Newer version of flask server. Backend server providing data to the web app. ~~To be hosted on Elastic Beanstalk.~~ Only used locally for building static site. | `run_server.sh` | `update_server.sh`
 ~~| `app` |  Old version of flask server, to be used with docker.~~
-| `posts` | Posts directory. Put new posts here and original size images.
+| `posts` | Posts directory. Put new posts here and original size images. | see below |
 
 ## Quickstart
 
@@ -28,8 +58,12 @@ update_public_posts.py
 # Sync posts to flask app
 ./eb_sync_posts.sh
 
+# Start dev apps
+./run_server.sh
+./run_client.sh
+
 # Run crawler
-cd ../../scrapy-crawlers/js_crawl
+cd ../../scrapy-crawler/js-crawl
 source activate selenium-py36
 scrapy crawl js_local_8080 -O output.json
 cd -
@@ -77,35 +111,6 @@ docker-compose run --service-ports server
 ```
 docker-compose build client
 docker-compose run --service-ports client
-```
-
-## Running for development without Docker
-
-### Quickstart
-
-```
-# Start the server
-./run_server.sh
-
-# ** Open a new window
-
-# Start the client
-./run_client.sh
-
-# ** open http://localhost:8080/
-```
-
-### Vue
-```
-yarn install
-yarn serve
-```
-
-
-### Flask
-```
-pip install -r requirements.txt
-flask", "run", "--host", "0.0.0.0
 ```
 
 ## Posts
@@ -157,3 +162,6 @@ posts
                 ├── IMG_6308.jpg
                 └── post.json
 ```
+
+
+

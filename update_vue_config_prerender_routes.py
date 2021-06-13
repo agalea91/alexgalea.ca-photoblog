@@ -5,7 +5,7 @@ import shutil
 print("Backing up vue.config.js")
 shutil.copyfile("vue.config.js", "vue.config.js.backup")
 
-website_urls_fp = "../../scrapy-crawler/js_crawl/crawl-data/website_urls.json"
+website_urls_fp = "../../scrapy-crawler/js-crawl/crawl-data/website_urls.json"
 with open(website_urls_fp, "r") as f:
     website_urls = json.loads(f.read())
 website_urls = [
