@@ -8,6 +8,7 @@ import Collections from './views/Collections.vue'
 import About from './views/About.vue'
 import CookiesPolicy from './views/CookiesPolicy.vue'
 import PhotoblogPost from './views/PhotoblogPost.vue'
+import Error404 from './views/Error404.vue'
 
 Vue.use(VueHead)
 Vue.use(Router)
@@ -43,6 +44,15 @@ const router = new Router({
       path: '/cookies-policy',
       name: 'cookies-policy',
       component: CookiesPolicy
+    },
+    {
+      path: '/404',
+      name: 'error-404',
+      component: Error404
+    },
+    {
+      path: '*',
+      componen: Error404
     }
   ],
   mode: 'history'
