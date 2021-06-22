@@ -46,6 +46,11 @@ export default {
           id: 'description',
           name: 'description',
           content: this.postContent.photo.desc.replace(/\.?$/, '') + '. High quality photos for download.'
+        },
+        {
+          id: 'og-image',
+          property: 'og:image',
+          content: this.postContent.cover_image
         }
       ]
     }

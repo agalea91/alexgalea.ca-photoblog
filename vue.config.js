@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 
         // Optional - Display the browser window when rendering. Useful for debugging.
         headless: true
-
+        // headless: false,
         // maxConcurrentRoutes: 1,
 
         //  Wait to render until the specified event is dispatched on the document.
