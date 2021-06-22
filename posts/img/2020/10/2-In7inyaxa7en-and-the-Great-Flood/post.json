@@ -1,9 +1,10 @@
 {
+    "post_number": 7,
     "title": "In7inyaxa7en and the Great Flood",
     "quote": {
         "source": {
             "url": "https://slcc.ca/experience/cultural-journey/",
-            "title": "The Self-Guided Cultural Journey Route through the Squamish and Lil’wat First Nations",
+            "title": "The Self-Guided Cultural Journey Route through the Squamish and Lil'wat First Nations",
             "author": "",
             "year": ""
         },
@@ -11,12 +12,12 @@
     },
     "photo": {
         "photographer": "Alexander Galea",
-        "desc": "Panorama Ridge hike on a sunny day in late summer",
+        "desc": "From the base of Black Tusk, looking around and out down the Howe Sound",
         "date_taken": "September 2020",
         "location": "Garibaldi Park",
         "tags": ["Hike", "Mountains", "Cloudy", "Snow", "Sound"]
     },
-    "cover_image": "20200911-IMG_7126.jpg",
+    "cover_image": "20201021-IMG_7849.jpg",
     "body" : {
         "divs": [
             {
@@ -78,10 +79,6 @@
             {
                 "type": "text",
                 "text": "This is the series of events that initiated the great flood, a story that spans may cultures."
-            },
-            {
-                "type": "photo",
-                "file": "20201021-IMG_7868.jpg"
             }
         ]
     }

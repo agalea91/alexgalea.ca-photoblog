@@ -9,6 +9,7 @@ import re
 import json
 import pandas as pd
 from pathlib import Path
+import traceback
 from typing import List
 
 from api import api_rest
@@ -34,6 +35,7 @@ def _get_file_path(post_file) -> str:
         *path
     )
     return path
+
 
 def _get_post_date(post_file) -> str:
     """ Get the date from the post folder path, e.g. 2020-03"""
@@ -240,10 +242,11 @@ class Posts(Resource):
         """
         self._parse_request_args(request.args)
         post_files = self._map_fs_post_files(apply_filter=True)
+        post_files = self._sort_post_files_by_post_number(post_files)
         post_files = self._apply_post_files_limit(post_files)
         posts = []
         for post_file in post_files:
-            resp_data = self._get_post_data(post_file, get_neighbours=True)
+            resp_data = self._load_post_data(post_file, get_neighbours=True)
             posts.append(copy(resp_data))
 
         posts = self._apply_posts_tag_filter(posts)
@@ -297,6 +300,17 @@ class Posts(Resource):
         )
         return post_files
 
+
+    def _sort_post_files_by_post_number(self, post_files):
+        """ Sort descending by post number field (i.e. most recent
+        posts created first)
+        """
+        post_files_orders = []
+        for post in post_files:
+            post_files_orders.append((post, self._load_post_number(post)))
+        return [post for post, _ in sorted(post_files_orders, key=lambda x: x[1], reverse=True)]
+
+
     def _apply_post_files_limit(self, post_files):
         if self.tag is not None:
             return post_files
@@ -323,12 +337,24 @@ class Posts(Resource):
             post.get(tag_type, {}).get("tags", [])
         ]
 
-    def _get_post_data(self, post_file, get_neighbours=False) -> dict:
+    def _load_post_number(self, post_file):
+        current_app.logger.debug(f"Opening post file: {post_file}")
+        try:
+            with open(post_file, "r", encoding="utf-8") as f:
+                post = json.load(f)
+            return post["post_number"]
+        except Exception as e:
+            current_app.logger.error(f"Exception raised when opening post file: {post_file}")
+            current_app.logger.error(traceback.format_exc())
+            return 0
+
+
+    def _load_post_data(self, post_file, get_neighbours=False) -> dict:
         """ Parse post data and return dict to append to response."""
 
         current_app.logger.debug(f"Opening post file: {post_file}")
 
-        with open(post_file, "r") as f:
+        with open(post_file, "r", encoding="utf-8") as f:
             post = json.load(f)
 
         # Check that post is valid
@@ -349,14 +375,14 @@ class Posts(Resource):
             # post["prev_date"] = _get_post_date(_prev_file)
             # post["next_date"] = _get_post_date(_next_file)
 
-            post["prev_title"] = self._get_post_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
+            post["prev_title"] = self._load_post_data(_prev_file, get_neighbours=False)["title"] if _prev_file else ""
             post["prev_url_path"] = _get_url_path(_prev_file) if _prev_file else ""
             post["prev_year"] = _get_post_year(_prev_file) if _prev_file else ""
             post["prev_month"] = _get_post_month(_prev_file) if _prev_file else ""
             post["prev_post_name"] = _get_post_name(_prev_file) if _prev_file else ""
 
             post["next_url_path"] = _get_url_path(_next_file) if _next_file else ""
-            post["next_title"] = self._get_post_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
+            post["next_title"] = self._load_post_data(_next_file, get_neighbours=False)["title"] if _next_file else ""
             post["next_year"] = _get_post_year(_next_file) if _next_file else ""
             post["next_month"] = _get_post_month(_next_file) if _next_file else ""
             post["next_post_name"] = _get_post_name(_next_file) if _next_file else ""
