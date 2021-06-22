@@ -1,0 +1,70 @@
+{
+    "title": "Earthquake Foot",
+    "quote": {
+        "source": {
+            "url": "https://www.hakaimagazine.com/features/great-quake-and-great-drowning/",
+            "title": "The Great Quake and the Great Drowning",
+            "author": "Ann Finkbeiner",
+            "year": "2015"
+        },
+        "tags": ["Pacific Northwest", "First Nations", "Mythology"]
+    },
+    "photo": {
+        "photographer": "Luke Buchan",
+        "desc": "Storm weans over the Howe Sound looking down from The Cheif",
+        "date_taken": "September 2020",
+        "location": "Squamish, BC",
+        "tags": ["Hike", "Cloudy", "City"]
+    },
+    "cover_image": "DSC_5187.jpg",
+    "body": {
+        "divs": [
+            {
+                "type": "text",
+                "text": "On the coast of what is now the state of Washington, Thunderbird and Whale had a fight,"
+            },
+            {
+                "type": "photo",
+                "file": "DSC_5187.jpg"
+            },
+            {
+                "type": "text",
+                "text": "This caused the mountains to shake and uprooted the trees. The ocean rose up and covered the whole land."
+            },
+            {
+                "type": "photo",
+                "file": "DSC_5106.jpg"
+            },
+            {
+                "type": "text",
+                "text": "To the North on Vancouver Island, dwarfs who lived in a mountain were dancing around their drum."
+            },
+            {
+                "type": "photo",
+                "file": "DSC_0008.jpg"
+            },
+            {
+                "type": "text",
+                "text": "When someone accidentally kicked the drum, they got \"earthquake foot\", thereafter causing an earquake with each step."
+            },
+            {
+                "type": "photo",
+                "file": "DSC_0019-2.jpg"
+            },
+            {
+                "type": "text",
+                "text": "The land shook and the ocean flooded in."
+            },
+            {
+                "type": "photo",
+                "file": "DSC_5107-2.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Everything then drifted away, everything was lost and gone.<br><br><i>- Quileute, Hoh, Nuu-chah-nulth peoples</i>"
+            }
+        ]
+    }
+}
+
+
