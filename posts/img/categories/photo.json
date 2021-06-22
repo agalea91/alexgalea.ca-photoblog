@@ -43,5 +43,20 @@
         "name": "Ocean",
         "desc": "A body of water that composes much of a planet's hydrosphere.",
         "desc_url": "https://en.wikipedia.org/wiki/Ocean"
+    },
+    {
+        "name": "Snow",
+        "desc": "Individual ice crystals that grow while suspended in the atmosphere [before] accumulating on the ground.",
+        "desc_url": "https://en.wikipedia.org/wiki/Snow"
+    },
+    {
+        "name": "Sound",
+        "desc": "A narrow sea or ocean channel between two bodies of land.",
+        "desc_url": "https://en.wikipedia.org/wiki/Sound_(geography)"
+    },
+    {
+        "name": "City",
+        "desc": "A permanent and densely settled place with administratively defined boundaries.",
+        "desc_url": "https://en.wikipedia.org/wiki/City"
     }
 ]
