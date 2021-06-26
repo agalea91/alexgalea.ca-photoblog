@@ -13,7 +13,7 @@
 import CookiesPolicy from '@/components/CookiesPolicy.vue'
 
 export default {
-  name: 'about',
+  name: 'cookies-policy',
   components: {
     CookiesPolicy
   },

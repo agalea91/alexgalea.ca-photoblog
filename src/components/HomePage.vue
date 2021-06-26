@@ -53,6 +53,31 @@
         </div>
       </li>
     </ul>
+    <div class="pagination-nav" v-if="info.has_pagination">
+      <router-link
+        v-if="info.next_page_number"
+        :to="{
+          name:  isHome ? 'home': 'collection',
+          params: isHome ? {} : { tag: info.tag },
+          query: { page: info.next_page_number }
+        }"
+        style="padding-left: 25px;"
+      >
+        Page {{ info.next_page_number }} →
+      </router-link>
+      <br>
+      <router-link
+        v-if="info.prev_page_number"
+        :to="{
+          name:  isHome ? 'home': 'collection',
+          params: isHome ? {} : { tag: info.tag },
+          query: { page: info.prev_page_number }
+        }"
+        style="padding-right: 25px;"
+      >
+        ← Page {{ info.prev_page_number }}
+      </router-link>
+    </div>
     <div id="buyme-coffee">
       <a href="https://www.buymeacoffee.com/alexgalea"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=alexgalea&button_colour=000000&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
     </div>
@@ -65,6 +90,7 @@ export default {
   name: 'HomePage',
   props: {
     posts: Array,
+    info: Object,
     isHome: Boolean,
     tag: String
   },
@@ -128,5 +154,18 @@ li {
   padding: 20px;
   width: 280px;
   max-width: 90%;
+}
+.pagination-nav {
+  padding: 20px 0 40px 0;
+  font-family: 'Playfair Display', serif;
+  line-height: 40px;
+  font-size: 1.5rem;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #545454;
+    }
+  }
 }
 </style>

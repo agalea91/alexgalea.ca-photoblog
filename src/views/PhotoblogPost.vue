@@ -13,7 +13,7 @@ import $backend from '../backend'
 // import AOS from 'aos'
 
 export default {
-  name: 'home',
+  name: 'photoblog-post',
   components: {
     PhotoblogPost
   },

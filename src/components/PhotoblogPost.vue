@@ -83,7 +83,9 @@
       <div v-if="postContent.quote.source.author">by <i>{{postContent.quote.source.author}}</i></div>
       <div v-if="postContent.quote.source.year"><i>{{postContent.quote.source.year}}</i></div>
     </div>
-
+    <div id="buyme-coffee">
+      <a href="https://www.buymeacoffee.com/alexgalea"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=alexgalea&button_colour=000000&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
+    </div>
   </div>
 </template>
 
@@ -191,6 +193,7 @@ h1 {
 }
 .quote-info-text {
   width: 500px;
+  margin-bottom: 80px;
   max-width: 80%;
   padding: 20px;
   border-radius: 2px;

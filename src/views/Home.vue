@@ -6,6 +6,7 @@
     <HomePage
       :isHome="isHome"
       :posts="posts"
+      :info="info"
       :tag="tag"
     />
   </div>
@@ -24,6 +25,7 @@ export default {
   data () {
     return {
       posts: [],
+      info: {},
       error: '',
       isHome: true,
       tag: ''
@@ -60,6 +62,7 @@ export default {
       $backend.fetchPosts(args)
         .then(responseData => {
           try {
+            this.info = responseData.info
             responseData.posts.forEach(post => {
               this.posts.push(post)
             })
@@ -85,7 +88,8 @@ export default {
       this.checkIfHome()
       this.fetchPosts({
         include_post_content: 'false',
-        tag: this.$route.params.tag
+        tag: this.$route.params.tag,
+        page: this.$route.query.page ? this.$route.query.page : '1'
       })
       this.tag = this.$route.params.tag ? this.$route.params.tag : ''
       this.$emit('updateHead')
@@ -95,7 +99,8 @@ export default {
     this.checkIfHome()
     this.fetchPosts({
       include_post_content: 'false',
-      tag: this.$route.params.tag
+      tag: this.$route.params.tag,
+      page: this.$route.query.page ? this.$route.query.page : '1'
     })
     this.tag = this.$route.params.tag ? this.$route.params.tag : ''
     this.$emit('updateHead')

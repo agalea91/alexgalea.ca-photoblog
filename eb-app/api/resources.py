@@ -231,10 +231,11 @@ class Posts(Resource):
         tag : str
             Tag to match (optional).
 
-        category_type
-
         limit : int
             Number of posts to return. Default is 10.
+        
+        page : int
+            Pagination number. Default is 1.
 
         include_post_content : str
             If set to "true", will return post content
@@ -243,20 +244,26 @@ class Posts(Resource):
         self._parse_request_args(request.args)
         post_files = self._map_fs_post_files(apply_filter=True)
         post_files = self._sort_post_files_by_post_number(post_files)
-        post_files = self._apply_post_files_limit(post_files)
+
+        if self.tag is None:
+            post_files = self._apply_posts_limit(post_files)
+
         posts = []
         for post_file in post_files:
             resp_data = self._load_post_data(post_file, get_neighbours=True)
             posts.append(copy(resp_data))
 
-        posts = self._apply_posts_tag_filter(posts)
+        if self.tag is not None:
+            posts = self._apply_posts_tag_filter(posts)
+            posts = self._apply_posts_limit(posts)
+        info = self._build_info()
 
         current_app.logger.debug("GET request posts being returned:")
         current_app.logger.debug(json.dumps(posts, indent=2))
         if not posts:
             current_app.logger.warning("No posts found!")
 
-        payload = {"posts": posts}
+        payload = {"posts": posts, "info": info}
         return payload
 
     def _parse_request_args(self, args):
@@ -268,6 +275,7 @@ class Posts(Resource):
         self.foldername = args.get("foldername", None)
         self.tag = args.get("tag", None)
         self.limit = int(args.get("limit", "10"))
+        self.page = int(args.get("page", "1"))
         self.include_post_content = (
             True if (args.get("include_post_content", "")).lower() == "true"
             else False
@@ -311,13 +319,16 @@ class Posts(Resource):
         return [post for post, _ in sorted(post_files_orders, key=lambda x: x[1], reverse=True)]
 
 
-    def _apply_post_files_limit(self, post_files):
-        if self.tag is not None:
-            return post_files
+    def _apply_posts_limit(self, posts):
+        self.has_cutoff_posts = False
         if self.limit is None:
-            return post_files
+            return posts
         else:
-            return post_files[:self.limit]
+            start_num = int((self.page-1) * self.limit)
+            end_num = int(self.page * self.limit)
+            if end_num < len(posts):
+                self.has_cutoff_posts = True
+            return posts[start_num:end_num]
 
     def _apply_posts_tag_filter(self, posts):
         if self.tag is None:
@@ -460,6 +471,17 @@ class Posts(Resource):
         return json.dumps(schema, indent=2)
 
 
+    def _build_info(self):
+        info = {}
+        info["tag"] = self.tag
+        if self.limit is not None:
+            if self.has_cutoff_posts:
+                info["has_pagination"] = True
+                info["next_page_number"] = self.page + 1
+        if self.page > 1:
+            info["has_pagination"] = True
+            info["prev_page_number"] = self.page - 1
+        return info
 
 
 
