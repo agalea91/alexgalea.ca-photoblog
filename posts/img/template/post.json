@@ -1,4 +1,5 @@
 {
+    "post_number": 1,
     "title": "",
     "quote": {
         "source": {
@@ -7,16 +8,16 @@
             "author": "",
             "year": ""
         },
-        "tags": []
+        "tags": ["Motivation", "Productivity", "Joy"]
     },
     "photo": {
         "photographer": "Alexander Galea",
         "desc": "",
-        "date_taken": "",
-        "location": "",
-        "tags": []
+        "date_taken": "April 2020",
+        "location": "Spanish Banks",
+        "tags": ["Dog", "Sunset", "Beach", "Mountains"]
     },
-    "cover_image": "",
+    "cover_image": "3-20200415-IMG_5200.jpg",
     "body": {
         "divs": [
             {
@@ -24,8 +25,32 @@
                 "text": ""
             },
             {
-                "type": "photo",
-                "file": ""
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
+            },
+            {
+                "type": "text",
+                "text": ""
             },
             {
                 "type": "text",
@@ -33,31 +58,14 @@
             },
             {
                 "type": "photo",
-                "file": ""
+                "file": "1-20200415-IMG_5172-2.jpg",
+                "caption": ""
             },
-            {
-                "type": "text",
-                "text": ""
-            },
+
             {
                 "type": "photo",
-                "file": ""
-            },
-            {
-                "type": "text",
-                "text": ""
-            },
-            {
-                "type": "photo",
-                "file": ""
-            },
-            {
-                "type": "text",
-                "text": ""
-            },
-            {
-                "type": "photo",
-                "file": ""
+                "file": "4-20200415-IMG_5205.jpg",
+                "caption": "Low lying \"clouds\" on the horizon, in fact smoke drifting in from forest fires to the South."
             }
         ]
     }
