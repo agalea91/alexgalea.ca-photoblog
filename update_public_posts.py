@@ -20,12 +20,11 @@ PUB_PATH = pathlib.Path("public")
 IGNORE_POSTS_STARTSWITH = "_"
 WATERMARK_FONT_SIZE = 25
 MAX_PX_SIZE = 1280
-WATERMARK_PHOTOGRAPHER = "Alexander Galea"
 WATERMARK_DOMAIN = "ravenslightphoto.com"
 
 def main(post_slug):
     """ Process images in "posts" - shrink, watermark, etc.
-    
+
     Default is to process all posts unless post_slug argument is given.
 
     post_slug : str
@@ -83,15 +82,15 @@ def main(post_slug):
         for image in image_files:
             image_fp = (fp / image["file"])
             proc_image_fp = dict(
-                small=(proc_fp / "processed" / f"sm_{image['file']}"),
-                small_watermark=(proc_fp / "processed" / f"sm_wk_{image['file']}"),
+                small=(proc_fp / f"sm_{image['file']}"),
+                small_watermark=(proc_fp / f"sm_wk_{image['file']}"),
             )
             pub_image_fp = (pub_fp / image["file"])
             print(image_fp)
 
             image_obj = load_image(image_fp)
             image_obj_small = resize_pixels(image_obj, MAX_PX_SIZE)
-            image_obj_small_watermark = add_watermark(image_obj_small, date=image["date"])
+            image_obj_small_watermark = add_watermark(image_obj_small, date=image["date"], photographer=image["photographer"])
 
             # Write to "processed" folder
             print(f"{str(image_fp)} -> {str(proc_image_fp['small'])}")
@@ -123,9 +122,9 @@ def load_image(image_fp):
     
 
 
-def add_watermark(image_obj, date):
+def add_watermark(image_obj, date, photographer):
     photo_date = re.findall("\d{4}", date)[0]
-    upper_right_text = f"© {WATERMARK_PHOTOGRAPHER} {photo_date}"
+    upper_right_text = f"© {photographer} {photo_date}"
     bottom_left_text = f"{WATERMARK_DOMAIN}"
     
     txt_obj = Image.new("RGBA", image_obj.size, (255,255,255,0))
@@ -183,6 +182,7 @@ def read_post_images(post_fp):
                 images.append({})
                 images[-1]["file"] = photo
                 images[-1]["date"] = post["photo"]["date_taken"]
+                images[-1]["photographer"] = post["photo"]["photographer"]
     return images
 
 
