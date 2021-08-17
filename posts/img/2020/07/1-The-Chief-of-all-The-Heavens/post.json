@@ -1,0 +1,70 @@
+{
+    "post_number": 9,
+    "title": "The Chief of all The Heavens",
+    "quote": {
+        "source": {
+            "url": "https://en.wikipedia.org/wiki/Black_Elk_Speaks",
+            "title": "Black Elk Speaks",
+            "author": "John G. Neihardt",
+            "year": "1932"
+        },
+        "attribution": "Black Elk, 1932",
+        "tags": ["First Nations", "Vision"]
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "Vibrant mountain ranges and rolling hills",
+        "date_taken": "October 2020",
+        "location": "Interior BC",
+        "tags": ["Mountains", "Clouds"]
+    },
+    "cover_image": "1-20200717-IMG_5689-2.jpg",
+    "body" : {
+        "divs": [
+            {
+                "type": "text",
+                "text": "I looked below me where the earth was silent in a sick green light, and saw the hills look up afraid and the grasses on the hills and all the animals"
+            },
+            {
+                "type": "photo",
+                "file": "1-20200717-IMG_5689-2.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Everywhere about me were the cries of frightened birds and sounds of fleeing wings. I was the chief of all the heavens riding there"
+            },
+            {
+                "type": "photo",
+                "file": "2-20200717-IMG_5690.jpg"
+            },
+            {
+                "type": "text",
+                "text": "When I looked behind me, all the twelve black horses reared and plunged and thundered"
+            },
+            {
+                "type": "photo",
+                "file": "3-20200717-IMG_5691.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Their manes and tails were whirling hail and their nostrils snorted lightning"
+            },
+            {
+                "type": "photo",
+                "file": "5-20200717-IMG_5684-2.jpg"
+            },
+            {
+                "type": "text",
+                "text": "When I looked below again, I saw the slant hail falling and the long, sharp rain"
+            },
+            {
+                "type": "photo",
+                "file": "6-20200717-IMG_5710.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Where we passed, the trees bowed low and all the hills were dim."
+            }
+        ]
+    }
+}

@@ -38,5 +38,15 @@
         "name": "Joy",
         "desc": "A feeling of great pleasure and happiness.",
         "desc_url": "https://en.wikipedia.org/wiki/Joy"
+    },
+    {
+        "name": "War",
+        "desc": "An intense armed conflict characterized by extreme violence, aggression, destruction, and mortality.",
+        "desc_url": "https://en.wikipedia.org/wiki/War"
+    },
+    {
+        "name": "Vision",
+        "desc": "Something seen in a dream, trance, or religious ecstasy.",
+        "desc_url": "https://en.wikipedia.org/wiki/Vision_(spirituality)"
     }
 ]

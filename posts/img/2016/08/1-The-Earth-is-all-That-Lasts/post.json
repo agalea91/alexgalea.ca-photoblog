@@ -1,0 +1,74 @@
+{
+    "post_number": 8,
+    "title": "The Earth is all That Lasts",
+    "quote": {
+        "source": {
+            "url": "https://en.wikipedia.org/wiki/Black_Elk_Speaks",
+            "title": "Black Elk Speaks",
+            "author": "John G. Neihardt",
+            "year": "1932"
+        },
+        "attribution": "Black Elk, 1932",
+        "tags": ["First Nations", "Mythology", "Legends", "Death", "War"]
+    },
+    "photo": {
+        "photographer": "Alexander Galea",
+        "desc": "Distant mountain views as the light fades, from North of Vancouver way up in the sky",
+        "date_taken": "October 2020",
+        "location": "Crown Mountain",
+        "tags": ["Hike", "Mountains", "Sunset"]
+    },
+    "cover_image": "1-20201007-IMG_7509.jpg",
+    "body" : {
+        "divs": [
+            {
+                "type": "text",
+                "text": "I went into our tepee and got dressed for war as fast as I could; but I could hear bullets whizzing outside"
+            },
+            {
+                "type": "photo",
+                "file": "1-20201007-IMG_7509.jpg"
+            },
+            {
+                "type": "photo",
+                "file": "2-20201007-IMG_7511.jpg"
+            },
+            {
+                "type": "text",
+                "text": "I was so shaky that it took me a long time to braid an eagle feather into my hair."
+            },
+            {
+                "type": "photo",
+                "file": "3-20201007-IMG_7536.jpg"
+            },
+            {
+                "type": "text",
+                "text": "While I was doing this, crowds of warriors on horses were roaring by up stream, yelling: \"Hoka hey!\""
+            },
+            {
+                "type": "photo",
+                "file": "4-20201007-IMG_7523.jpg"
+            },
+            {
+                "type": "text",
+                "text": "Then I rubbed red paint all over my face and took my bow and arrows and got on my horse. I did not have a gun, only a bow and arrows."
+            },
+            {
+                "type": "photo",
+                "file": "5-20201007-IMG_7529.jpg"
+            },
+            {
+                "type": "text",
+                "text": "A man by the name of Little Bear rode up to me on a pinto horse, and he had a very pretty saddle blanket."
+            },
+            {
+                "type": "photo",
+                "file": "6-20201007-IMG_7513-SMOOTH.jpg"
+            },
+            {
+                "type": "text",
+                "text": "He said: \"Take courage, boy! The earth is all that lasts!\""
+            }
+        ]
+    }
+}
