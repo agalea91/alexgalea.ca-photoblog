@@ -1,4 +1,4 @@
-Werkzeug==0.16.1
+Werkzeug==3.0.1
 flask
 flask-restplus
 gunicorn==19.7.1
