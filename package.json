@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
-    "axios": "^0.18.0",
+    "axios": "^1.6.0",
     "prerender-spa-plugin": "^3.4.0",
     "vue": "^2.5.13",
     "vue-analytics": "^5.22.1",
